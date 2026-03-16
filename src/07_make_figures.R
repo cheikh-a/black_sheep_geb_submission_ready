@@ -94,11 +94,11 @@ make_figures <- function() {
     )) +
     labs(
       title = "Balanced reciprocity breaks on the first honest night",
-      subtitle = "The deterministic cycle shows the successor's windfall and the predecessor's immediate loss.",
+      subtitle = "The deterministic cycle shows the windfall to the successor and the immediate loss of the predecessor.",
       x = "Event time",
       y = "Mean wealth",
       colour = NULL,
-      caption = "Figure 1 demonstrates that a single permanent honest deviation destroys the equal-wealth cycle immediately."
+      caption = "Figure 1 shows that a single permanent honest deviation destroys the equal wealth cycle immediately."
     ) +
     theme_black_sheep()
   save_figure_outputs(fig01, "fig01_balanced_cycle_event", 7.2, 4.6)
@@ -157,12 +157,12 @@ make_figures <- function() {
       "Residual poor" = "#7A7A7A"
     )) +
     labs(
-      title = "Wealth paths separate by the highest role reached in the transition",
-      subtitle = "Agents who ever become patrons pull away early, while future guards remain far below them.",
+      title = "Wealth paths diverge by the highest role reached in the transition",
+      subtitle = "Households that later become patrons separate early, while future guards remain well below them.",
       x = "Time",
       y = "Mean wealth by peak role",
       colour = NULL,
-      caption = "Figure 3 demonstrates that the early wealth split remains visible when agents are grouped by the highest institutional role they reach during the transition."
+      caption = "Figure 3 groups households by the highest institutional role reached during the transition and shows that the early wealth split persists under that classification."
     ) +
     theme_black_sheep()
   save_figure_outputs(fig03, "fig03_event_time_roles", 7.4, 4.8)
@@ -202,7 +202,7 @@ make_figures <- function() {
   fig04 <- p_dist_heat + p_dist_band +
     plot_annotation(
       title = "The wealth distribution evolves from equality to stratification",
-      caption = "Figure 4 shows that the transition is not a one-agent anomaly: dispersion broadens and then hardens into a stratified distribution."
+      caption = "Figure 4 shows dispersion broadening across the population and then hardening into a stratified distribution."
     )
   save_figure_outputs(fig04, "fig04_distribution_evolution", 10.4, 4.8)
 
@@ -229,8 +229,8 @@ make_figures <- function() {
 
   fig05 <- p_gini + p_top10 + p_lorenz +
     plot_annotation(
-      title = "Inequality dynamics are persistent rather than transitory",
-      caption = "Figure 5 demonstrates that the honest shock has durable distributional consequences, not just a temporary reshuffling of goods."
+      title = "Inequality dynamics persist over the transition",
+      caption = "Figure 5 shows durable distributional consequences of the honest shock, with no return to the pre-shock distribution."
     )
   save_figure_outputs(fig05, "fig05_inequality_dynamics", 12.4, 4.8)
 
@@ -294,7 +294,7 @@ make_figures <- function() {
       x = expression(gamma),
       y = "Enforcement effectiveness",
       fill = NULL,
-      caption = "Figure 7 demonstrates that the paper's regimes occupy distinct parameter regions rather than a single hand-picked path."
+      caption = "Figure 7 shows the regimes occupying distinct parameter regions across the sweep."
     ) +
     theme_black_sheep()
   save_figure_outputs(fig07, "fig07_regime_phase_diagram", 7.5, 4.8)
@@ -338,11 +338,11 @@ make_figures <- function() {
     scale_y_continuous(labels = percent_format(), expand = expansion(mult = c(0, 0.02))) +
     coord_cartesian(ylim = c(0, 1)) +
     labs(
-      title = "Role composition changes as the system reorganizes",
+      title = "Role composition changes over the transition",
       x = "Time",
       y = "Population share",
       fill = NULL,
-      caption = "Figure 8 shows the endogenous transition from universal theft to patronage and then to guarded elite protection."
+      caption = "Figure 8 traces the movement from widespread theft to patronage and then to selective elite protection."
     ) +
     theme_black_sheep()
   save_figure_outputs(fig08, "fig08_role_shares", 7.6, 4.8)
@@ -371,7 +371,7 @@ make_figures <- function() {
   fig09 <- p_timing_patron + p_timing_guard +
     plot_annotation(
       title = "Initial honesty changes early patronage and later guard timing",
-      caption = "The first patron appears at the earliest feasible post-shock contracting round in every run.\nThe left panel therefore measures patronage at time 3, while the right panel records when guards reach five percent of the population."
+      caption = "The first patron appears at the earliest feasible post-shock contracting round in every run. The left panel therefore reports patronage at time 3, while the right panel records when guards reach five percent of the population."
     )
   save_figure_outputs(fig09, "fig09_transition_timing", 10.2, 4.8)
 
@@ -481,8 +481,8 @@ make_figures <- function() {
 
   fig11 <- p_welfare_levels + p_welfare_costs +
     plot_annotation(
-      title = "Welfare falls because the shock creates inequality and costly protection",
-      caption = "Figure 11 demonstrates that the welfare loss is not a confusion about pure redistribution: it comes from concavity plus theft, contract, guard, and punishment costs."
+      title = "Welfare falls as inequality rises and protection absorbs resources",
+      caption = "Figure 11 separates the decline in welfare from the decline in aggregate wealth and shows the resource costs attached to theft, contracting, guarding, and punishment."
     )
   save_figure_outputs(fig11, "fig11_welfare_decomposition", 10.4, 4.8)
 
@@ -519,13 +519,13 @@ make_figures <- function() {
     ) +
     labs(
       title = "Robustness across key parameters",
-      subtitle = "Welfare is most responsive to theft intensity and occupied-house vulnerability, while inequality moves within a narrower band.",
+      subtitle = "Welfare responds most strongly to theft intensity and occupied house vulnerability, while inequality moves within a narrower band.",
       x = "Parameter value",
       y = "Outcome",
       colour = NULL,
       fill = "Dominant regime",
       shape = "Dominant regime",
-      caption = "Figure 12 shows how final welfare and final inequality move in one-dimensional sweeps around the baseline calibration. Marker shapes identify the dominant regime reached at each parameter value."
+      caption = "Figure 12 reports final welfare and final inequality in one dimensional sweeps around the baseline calibration, with marker shapes identifying the dominant regime at each parameter value."
     ) +
     theme_black_sheep() +
     theme(strip.placement = "outside")
