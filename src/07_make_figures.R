@@ -132,46 +132,37 @@ make_figures <- function() {
   save_figure_outputs(fig02, "fig02_first_night_accounting", 7, 4.2)
 
   terminal_roles <- enforcement_agents |>
-    filter(time >= max(time) - 10) |>
-    count(id, role, sort = TRUE) |>
     group_by(id) |>
-    slice_max(n, n = 1, with_ties = FALSE) |>
-    ungroup() |>
-    mutate(group = recode(
-      role,
-      honest = "Honest",
-      patron = "Future patrons",
-      elite = "Future patrons",
-      hired_thief = "Hired thieves",
-      guard = "Guards",
-      freelance_thief = "Residual poor",
-      stay = "Residual poor",
-      inactive = "Residual poor"
-    )) |>
+    summarise(group = case_when(
+      any(forced_honest) ~ "Honest",
+      any(role %in% c("patron", "elite")) ~ "Patrons",
+      any(role == "guard") ~ "Guards",
+      TRUE ~ "Residual poor"
+    ), .groups = "drop") |>
     select(id, group)
 
   event_time_roles <- enforcement_agents |>
     left_join(terminal_roles, by = "id") |>
     group_by(time, group) |>
-    summarise(mean_wealth = mean(wealth), median_wealth = median(wealth), .groups = "drop")
+    summarise(mean_wealth = mean(wealth), median_wealth = median(wealth), .groups = "drop") |>
+    mutate(group = factor(group, levels = c("Honest", "Patrons", "Guards", "Residual poor")))
 
   fig03 <- ggplot(event_time_roles, aes(time, mean_wealth, colour = group)) +
     geom_line(linewidth = 0.9) +
     geom_point(size = 1.2) +
     scale_colour_manual(values = c(
       "Honest" = "#2F6B5E",
-      "Future patrons" = "#6C4E97",
-      "Hired thieves" = "#B24C63",
+      "Patrons" = "#6C4E97",
       "Guards" = "#356D9A",
       "Residual poor" = "#7A7A7A"
     )) +
     labs(
-      title = "Wealth paths separate into durable social roles",
-      subtitle = "Future patrons peel away from hired thieves, guards, and the residual poor soon after the perturbation.",
+      title = "Wealth paths separate by the highest role reached in the transition",
+      subtitle = "Agents who ever become patrons pull away early, while future guards remain far below them.",
       x = "Time",
-      y = "Mean wealth by eventual role",
+      y = "Mean wealth by peak role",
       colour = NULL,
-      caption = "Figure 3 demonstrates that the long-run class structure is visible early in the transition dynamics."
+      caption = "Figure 3 demonstrates that the early wealth split remains visible when agents are grouped by the highest institutional role they reach during the transition."
     ) +
     theme_black_sheep()
   save_figure_outputs(fig03, "fig03_event_time_roles", 7.4, 4.8)
