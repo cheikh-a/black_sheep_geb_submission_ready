@@ -39,7 +39,7 @@ The manuscript is framed as a theory paper with simulations for *Games and Econo
 | Author affiliation label | The title page and manuscript now use `Université Laval`. Add a department or research unit only if a more specific institutional label is preferred. |
 | Submission exclusivity | Confirm directly in Elsevier's portal at the time of upload. |
 | Funding metadata | The manuscript states that no external funding supported the research. Match the portal entry to that statement. |
-| Repository archiving | The paper cites the public GitHub repository. Add a Zenodo or other archival release if the editor requests a persistent record at publication. |
+| Repository archiving | The public replication package is archived on Zenodo at `10.5281/zenodo.19051109`, with GitHub retained as the development mirror. |
 
 ## Residual risks
 

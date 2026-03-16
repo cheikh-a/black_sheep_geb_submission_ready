@@ -1,6 +1,6 @@
 # Zenodo Release Checklist
 
-This repository is prepared for GitHub-to-Zenodo archiving. The files `.zenodo.json` and `CITATION.cff` at the repository root provide the base metadata for the first archival release.
+This repository is prepared for GitHub-to-Zenodo archiving. The files `.zenodo.json` and `CITATION.cff` at the repository root provide the base metadata for the archival release. The current version DOI is `10.5281/zenodo.19051109`.
 
 ## Before the first archival release
 
@@ -20,11 +20,11 @@ This repository is prepared for GitHub-to-Zenodo archiving. The files `.zenodo.j
 
 1. Use `Zenodo` as the repository name in the Elsevier submission system.
 2. Paste the Zenodo record URL or DOI into the repository link field.
-3. If desired, replace the GitHub URL in `paper/sections/backmatter.tex` with the Zenodo concept DOI and rebuild the manuscript.
-4. If desired, update `submission/cover_letter.tex` and `submission/cover_letter.md` so the cover letter cites the same archival record.
+3. The manuscript and cover letter now cite the version DOI `10.5281/zenodo.19051109`.
+4. If Zenodo supplies a concept DOI that you prefer for citation, replace the version DOI in `paper/sections/backmatter.tex`, `submission/cover_letter.tex`, and `submission/cover_letter.md` and rebuild.
 
-## Suggested first tag
+## Current tag
 
 - `v1.0.0-submission`
 
-This tag name is descriptive, stable, and makes it easy to distinguish the original submission archive from later revisions.
+This tag was used for the first submission archive and generated the Zenodo record `10.5281/zenodo.19051109`.

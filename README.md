@@ -77,7 +77,7 @@ make clean
 
 ## Zenodo archival release
 
-This repository is public at `https://github.com/cheikh-a/black_sheep_geb_submission_ready` and is prepared for GitHub-to-Zenodo archiving.
+This repository is public at `https://github.com/cheikh-a/black_sheep_geb_submission_ready` and the current archival release is available at `https://doi.org/10.5281/zenodo.19051109`.
 
 1. Log in at `https://zenodo.org` and connect the GitHub account.
 2. In the GitHub tab on Zenodo, enable archiving for `cheikh-a/black_sheep_geb_submission_ready`.
@@ -85,6 +85,6 @@ This repository is public at `https://github.com/cheikh-a/black_sheep_geb_submis
 4. Create a GitHub release, for example `v1.0.0`.
 5. Wait for Zenodo to archive the release and mint the version DOI and concept DOI.
 6. Use `Zenodo` as the repository name in the journal submission system and paste the Zenodo record URL or DOI there.
-7. After the DOI is minted, update the data-availability statement and cover letter if you want the archival DOI to appear in the submission files themselves.
+7. The current version DOI is `10.5281/zenodo.19051109`.
 
 The detailed release checklist is stored in `reports/zenodo_release_checklist.md`.
