@@ -1,0 +1,16 @@
+.DS_Store
+.Rhistory
+.RData
+.Rproj.user
+renv/library/
+renv/staging/
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+output/logs/*.log
+

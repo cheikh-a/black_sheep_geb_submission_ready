@@ -1,0 +1,4 @@
+"Scenario","Gini","Top decile","First patron","First guard","Regime"
+"Baseline perturbation",0.231111111111111,0.2,"Not reached","Not reached","Transition"
+"Patronage dynamics",0.574746830683271,0.295638545213175,"2","Not reached","Transition"
+"Enforcement dynamics",0.640183231362308,0.306361572216158,"2","7","Guard regime"

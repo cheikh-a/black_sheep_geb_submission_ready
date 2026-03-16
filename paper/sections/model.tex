@@ -1,0 +1,288 @@
+\section{Model}
+\label{sec:model}
+
+\subsection{Unified architecture and timing}
+
+Two layers organize the model. A unit transfer benchmark isolates the balanced accounting at the beginning of the fable by Calvino, with successful theft always transferring one unit, all agents starting symmetric, and the only live actions being to steal or stay home. A proportional transfer extension enters only after symmetry has been broken and adds the margins the benchmark cannot carry on its own: wealth-dependent exposure, contracting between rich patrons and poor thieves, and the later purchase of guards. The unit transfer environment defines the initial cycle and the first honest perturbation; the proportional transfer environment governs stratification, delegated theft, and organized enforcement. Keeping that sequence explicit removes the notational drift that otherwise arises when one environment is asked to carry every result.
+
+Time is discrete and indexed by $t = 0,1,2,\dots$. Agents are indexed by $i \in \{1,\dots,N\}$ with $N \ge 3$. Wealth at the beginning of period $t$ is $w_{it} \ge 0$. In the benchmark all agents begin with common wealth $\bar{w} > \tau$, where the unit loot is normalized to $\tau = 1$. In the extension the loot from a successful raid on victim $j$ is $\gamma w_{jt}$, where $\gamma \in (0,1)$. The notation used throughout the paper is collected in Table \ref{tab:notation}; the same symbols are used in the theory, the simulations, and the appendix proofs.
+
+\begin{table}[tbp]
+    \centering
+    \caption{Notation. The table collects the state variables, contract terms, and regime objects used throughout the theory and simulation sections.}
+    \label{tab:notation}
+    \input{tables/table_notation.tex}
+\end{table}
+
+Each period begins with observation of the wealth vector $w_t = (w_{1t},\dots,w_{Nt})$, continues with action choices, target selection, raids and guard interventions, and ends with the payment of wages, loot shares, contracting costs, guarding costs, and punishment losses that generate the next-period wealth vector $w_{t+1}$. In the benchmark the action set is $\{\text{steal}, \text{stay}\}$; in the extension, rich agents may additionally choose whether to hire a thief or a guard, and poor agents may accept employment as thieves or guards. This timing fixes the chronology used throughout. The honest agent is protected on the first night because he stays home when the first perturbation occurs. Rich households remain relatively safe in the patronage phase because they are occupied and because dependent thieves have little reason to attack the patrons who employ them. Guards become valuable later because concentrated wealth eventually attracts poaching and because the informal deterrence created by patronage weakens once the prey base among the poor is exhausted.
+
+In the benchmark stage game, burglary serves as a reduced form device for balanced reciprocity. The proportional extension restores the margins that matter once wealth diverges. The restricted architecture isolates reciprocity, class formation, and enforcement without introducing production, audit technologies, or a fully solved Markov perfect state space.
+
+\subsection{Baseline benchmark: balanced reciprocal theft}
+
+Let $\sigma$ be a permutation of $\{1,\dots,N\}$ with no fixed points. Under the profile induced by $\sigma$, each agent $i$ steals from $\sigma(i)$ and is in turn robbed by $\sigma^{-1}(i)$. The benchmark stage game assumes that a household that leaves home to steal is vulnerable to being robbed, whereas a household that stays home prevents a raid on that date. Since every agent steals in the benchmark profile, every household is absent and every planned raid succeeds. Each successful raid transfers one unit from victim to thief. Wealth at the end of the period therefore satisfies
+\begin{equation}
+w_{i,t+1} = w_{it} - \tau \mathbf{1}\{\sigma^{-1}(i)\text{ raids } i\} + \tau \mathbf{1}\{i\text{ raids }\sigma(i)\}.
+\label{eq:benchmark-wealth-update}
+\end{equation}
+Along a permutation profile with one incoming and one outgoing raid per agent, both indicators equal one.
+
+\begin{definition}[Balanced theft cycle]
+\label{def:balanced-cycle}
+A balanced theft cycle is a permutation profile $\sigma$ such that each agent undertakes exactly one outgoing raid and suffers exactly one incoming raid in the period.
+\end{definition}
+
+The basic accounting is immediate but worth stating explicitly because it is the benchmark against which everything else will be measured.
+
+\begin{lemma}[Balanced accounting]
+\label{lem:balanced-accounting}
+If all agents begin a period with common wealth $\bar{w}$ and play a balanced theft cycle, then every agent ends the period with wealth $\bar{w}$ and aggregate wealth is preserved.
+\end{lemma}
+
+\begin{proof}
+See Appendix \ref{app:proofs}. Each agent loses exactly $\tau$ and gains exactly $\tau$, so wealth is unchanged agent by agent and therefore in aggregate.
+\end{proof}
+
+A weak equilibrium notion for the initial regime comes from end-of-period wealth net of the resource cost of personally going out to steal. Let $c_T \ge 0$ denote that cost. In the stripped-down benchmark the cost is small enough that stealing is weakly preferred to staying when all others maintain the cycle. Formally, an agent who follows the cycle ends with $\bar{w} - \tau + \tau - c_T = \bar{w} - c_T$, while an agent who stays home under universal theft avoids being robbed but also forgoes loot, ending with $\bar{w} - \tau$. Thus stealing is weakly better whenever $c_T \le \tau$.
+
+\begin{proposition}[Balanced reciprocity as a weak equilibrium]
+\label{prop:balanced-cycle}
+Suppose all agents begin with common wealth $\bar{w}$, all successful raids transfer $\tau = 1$, and the effort cost of personal theft satisfies $0 \le c_T \le \tau$. Then any balanced theft cycle is a weak Nash equilibrium of the one-shot stage game.
+\end{proposition}
+
+\begin{proof}
+See Appendix \ref{app:proofs}. Under symmetry, deviating to a different victim merely permutes the identity of the counterparty and does not alter the deviator's end-of-period wealth. Deviating to staying home prevents the incoming raid on the deviator's house, but also sacrifices the outgoing loot. The deviation yields $\bar{w} - \tau$, while following the cycle yields $\bar{w} - c_T \ge \bar{w} - \tau$. Hence no unilateral deviation is strictly profitable.
+\end{proof}
+
+Only a weak claim is needed at this stage. Universal predation can be mutually consistent and distributively neutral when every agent is both predator and prey in exactly the same way, which is enough to formalize the opening equilibrium in Calvino without claiming efficiency, strictness, or dynamic robustness. For the same reason, this object is not labeled a top-trading-cycle equilibrium. The graph of the benchmark resembles a cyclic allocation problem because every agent has one incoming and one outgoing link, and that resemblance is useful when thinking about local propagation after one link is broken. Yet the resemblance stops at the graph. Here transfers are coerced, victims impose no consent constraint, and one agent action changes the opportunity set of others through exposure and depletion. The benchmark therefore supports only a TTC-like cyclic intuition and does not inherit the incentive and core properties of the Shapley-Scarf environment.
+
+\subsection{Honest perturbation and stationary instability}
+
+Dynamic analysis requires the horizon and the equilibrium concept to be stated before the result itself. Consider an infinite horizon repeated game with common discount factor $\delta \in (0,1)$. One agent, denoted $h$, is exogenously committed to honesty and chooses $\text{stay}$ in every period. All other agents can choose either personal theft or staying home in the benchmark environment. Strategies are restricted to be stationary and Markov in current wealth, so each agent conditions only on the current state and not on the full history. This restriction is substantive and is exactly the object needed to address the earlier horizon confusion, because the theorem concerns stationary Markov continuation after the first honest shock and not the full set of repeated equilibria sustained by elaborate punishments.
+
+Let $p = \sigma^{-1}(h)$ be the predecessor who planned to rob the honest agent, and let $q = \sigma(h)$ be the successor whom the honest agent would have robbed under universal participation. Since $h$ stays home at $t=0$, the raid by $p$ fails, while the raid that would have been undertaken by $h$ never occurs. If every other agent continues the benchmark cycle at $t=0$, then
+\begin{equation}
+w_{h1} = \bar{w}, \qquad w_{p1} = \bar{w} - \tau, \qquad w_{q1} = \bar{w} + \tau,
+\label{eq:first-night-accounting}
+\end{equation}
+and all other agents remain at $\bar{w}$.
+
+\begin{lemma}[First night local asymmetry]
+\label{lem:first-night}
+Under the benchmark cycle with one permanently honest agent $h$, the first honest night creates a local three agent asymmetry given by \eqref{eq:first-night-accounting}. In particular, the successor $q$ receives a windfall and the predecessor $p$ suffers an immediate shortfall.
+\end{lemma}
+
+\begin{proof}
+See Appendix \ref{app:proofs}. The honest agent neither steals nor is robbed, the predecessor fails in his attempted raid on an occupied house, and the successor is not robbed by the honest agent.
+\end{proof}
+
+To determine whether the original regime can continue, the model introduces exposure. If agent $i$ steals personally at date $t$, he leaves home and faces an expected exposure loss proportional to his own wealth. Let $\rho \in (0,1)$ denote the exposure coefficient. In the benchmark environment the expected one-period return from personal theft is
+\begin{equation}
+\pi^{S}(w_{it}) = \tau - \rho w_{it} - c_T,
+\label{eq:self-theft-threshold}
+\end{equation}
+while the normalized return from staying home is $\pi^{N}(w_{it}) = 0$. Hence there is a wealth threshold
+\begin{equation}
+\widehat{w} = \frac{\tau - c_T}{\rho}
+\label{eq:threshold}
+\end{equation}
+such that an agent weakly prefers personal theft when $w_{it} \le \widehat{w}$ and strictly prefers staying home when $w_{it} > \widehat{w}$.
+
+\begin{assumption}[Interior exposure threshold]
+\label{ass:threshold}
+The exposure threshold satisfies $\bar{w} < \widehat{w} \le \bar{w} + \tau$.
+\end{assumption}
+
+The assumption places the symmetric benchmark wealth level below the exposure cutoff and the first night windfall at or above it. Personal theft is still weakly attractive at $\bar{w}$, but no longer attractive after one unit of windfall. This is not a generic truth about crime. It identifies the narrow parameter region in which the first honest deviation in Calvino has the power to change the best response of the successor immediately.
+
+\begin{theorem}[No stationary one-honest continuation]
+\label{thm:no-stationary-one-honest}
+Under Assumption \ref{ass:threshold}, there is no stationary Markov equilibrium of the repeated benchmark game that preserves the original balanced theft pattern for all agents other than the permanently honest agent $h$.
+\end{theorem}
+
+\begin{proof}
+See Appendix \ref{app:proofs}. By Lemma \ref{lem:first-night}, the successor $q$ enters period $t=1$ with wealth $w_{q1} = \bar{w} + \tau$. Assumption \ref{ass:threshold} implies $w_{q1} > \widehat{w}$, so \eqref{eq:self-theft-threshold} yields $\pi^{S}(w_{q1}) < 0 = \pi^{N}(w_{q1})$. Thus $q$ strictly prefers staying home at $t=1$ and no longer continues to steal. Since the original balanced pattern requires $q$ to keep stealing, that pattern cannot be stationary after the perturbation.
+\end{proof}
+
+Under a transparent exposure threshold, the original balanced reciprocity pattern cannot remain a stationary Markov regime once exactly one agent is permanently honest. The theorem does not characterize the full set of repeated equilibria with one honest agent. In the simulation, agents who inherit the first night windfall stop personal theft once their wealth crosses the threshold implied by \eqref{eq:threshold}, so the computational rule coincides with the best response stated in the theorem.
+
+Chronology matters here. The honest agent is not robbed immediately upon becoming honest. He is protected on the first night because he stays home, and occupied houses in the benchmark cannot be burgled. Only later, once the society leaves the universal-cycle environment and moves into the stochastic proportional transfer extension, do occupied but unguarded houses become imperfectly safe. The distinction between first night certainty and later stochastic vulnerability is maintained in both the theory and the simulation.
+
+\subsection{Proportional-transfer extension and endogenous patronage}
+
+Once the first honest shock has broken symmetry, the benchmark no longer suffices. The dynamic extension retains the same population and wealth state, but the theft technology changes. A successful raid on victim $j$ now transfers $\gamma w_{jt}$, with $\gamma \in (0,1)$. This is the only theft technology used in the stratification, patronage, and guard regimes. Under unequal wealth, the relevant margin is no longer the gain or loss of one unit. A rich agent who leaves home exposes a large stock of wealth, while a poor agent exposes very little. The proportional specification expresses that asymmetry parsimoniously.
+
+Let $m_t$ denote the expected gross loot from the best personal raid available to a rich agent at date $t$. For most of the analysis it is enough to treat
+\begin{equation}
+m_t = \gamma \bar{w}^{T}_t,
+\label{eq:mt}
+\end{equation}
+where $\bar{w}^{T}_t$ is the expected wealth of the best available target class among nonelite households. If rich agent $i$ raids personally, his expected one-period net payoff is
+\begin{equation}
+\pi^{\mathrm{self}}_{it} = m_t - \rho w_{it} - c_T.
+\label{eq:personal-payoff}
+\end{equation}
+If instead he stays home without contracting, the normalized payoff is $\pi^{\mathrm{stay}}_{it}=0$.
+
+Patronage becomes meaningful only if delegation changes the feasible target set and the division of surplus. To capture the first margin, let $H_t \subseteq P_t$ denote the set of relatively wealthy but still poorly protected households among the poor. A patron can direct a hired thief toward this set more effectively than a freelancer can. Let $\phi_t \ge 1$ denote that targeting advantage, so delegated gross loot is
+\begin{equation}
+L_t = \phi_t \gamma \bar{w}^{H}_t,
+\label{eq:delegated-loot}
+\end{equation}
+where $\bar{w}^{H}_t$ is the mean wealth of the targeted high value poor. The model thus keeps the direction of physical theft clear. In the patronage regime, poor thieves usually rob poor or near-poor households, not elite households. The net transfer is poor to rich because some of the loot is remitted upward to the patron.
+
+To capture the second margin, let $o_{jt}$ denote the outside option of poor agent $j$ if he rejects an offer from a patron. The outside option is not the full delegated loot because a freelancer lacks the targeting advantage of the patron and competes with other poor thieves for a depleted prey base. The model writes
+\begin{equation}
+o_{jt} = \lambda_t \gamma \bar{w}^{P}_t - c_T,
+\qquad \lambda_t \in (0,1),
+\label{eq:outside-option}
+\end{equation}
+where $\bar{w}^{P}_t$ is mean poor wealth and $\lambda_t$ summarizes congestion and bargaining weakness in the freelance market. A contract between patron $i$ and thief $j$ has fixed payment $s_{ijt}$ and loot share $\alpha_{ijt} \in [0,1]$ for the thief, while the patron pays contracting cost $k>0$. The thief accepts if
+\begin{equation}
+s_{ijt} + \alpha_{ijt}L_t \ge o_{jt}.
+\label{eq:IR}
+\end{equation}
+
+Let $\beta \in [0,1]$ denote patron bargaining power over the residual surplus. If a contract is formed, total surplus net of the outside option of the thief and the contracting cost of the patron equals
+\begin{equation}
+\Sigma_t = L_t - k - o_{jt}.
+\label{eq:total-surplus}
+\end{equation}
+The payment rule is chosen so that the thief receives his outside option plus the share $(1-\beta)\Sigma_t$, leaving the patron with $\beta \Sigma_t$. Equivalently,
+\begin{equation}
+s_{ijt} + \alpha_{ijt}L_t = o_{jt} + (1-\beta)\Sigma_t
+\label{eq:bargaining-rule}
+\end{equation}
+whenever $\Sigma_t \ge 0$.
+
+\begin{lemma}[Contract feasibility]
+\label{lem:contract-feasibility}
+There exists a patron-thief contract satisfying the thief's participation constraint if and only if
+\begin{equation}
+L_t - o_{jt} > k.
+\label{eq:feasibility}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+See Appendix \ref{app:proofs}. A contract is feasible exactly when gross delegated loot exceeds the reservation utility of the thief plus the contracting cost of the patron.
+\end{proof}
+
+Condition \eqref{eq:feasibility} is economically transparent. Patronage is not attractive merely because the patron is rich. It is attractive because delegated predation reaches a target class or success probability that the poor freelancer cannot reach alone, and because the outside option of poor workers is compressed by competition and depletion. If either margin disappears, the contract market collapses.
+
+\begin{proposition}[Strict patron surplus and occupational choice]
+\label{prop:patronage}
+Suppose Lemma \ref{lem:contract-feasibility} holds and the patron captures fraction $\beta$ of the contract surplus. Then patron $i$'s expected payoff from hiring thief $j$ is
+\begin{equation}
+\pi^{\mathrm{hire}}_{ijt} = \beta\left(L_t - k - o_{jt}\right).
+\label{eq:patron-payoff}
+\end{equation}
+The rich agent strictly prefers hiring thief $j$ to both abstention and personal theft whenever
+\begin{equation}
+\beta\left(L_t - k - o_{jt}\right) > \max\left\{0,\; m_t - \rho w_{it} - c_T\right\}.
+\label{eq:patron-dominance}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+See Appendix \ref{app:proofs}. Equation \eqref{eq:patron-payoff} follows directly from the bargaining rule. Hiring dominates abstention because the right-hand side of \eqref{eq:patron-dominance} exceeds zero, and it dominates personal theft because the expected surplus from delegation exceeds the net return available to the rich agent who exposes wealth at home.
+\end{proof}
+
+Surplus arises because delegation is more productive than freelance theft and because the reservation utility of the worker remains below delegated gross returns. The wedge can come from better targeting, better information, bargaining power, or labour-market slack. The model requires only one such margin to survive.
+
+Poor agents become hired thieves because they remain below the wealth threshold at which exposure makes personal theft unattractive and because the wage or commission implied by \eqref{eq:bargaining-rule} exceeds their shrinking outside option. The same compression of opportunity that makes them vulnerable to theft also makes them available as predatory labor. That dual role is central to the later emergence of guards.
+
+\begin{corollary}[Comparative statics of patronage]
+\label{cor:patronage-statics}
+Fix $w_{it}$ and suppose $L_t = \phi_t \gamma \bar{w}^{H}_t$ and $o_{jt} = \lambda_t \gamma \bar{w}^{P}_t - c_T$. Whenever \eqref{eq:feasibility} holds, patron payoff \eqref{eq:patron-payoff} is increasing in $\phi_t$, decreasing in $\lambda_t$, decreasing in $k$, and decreasing in the attractiveness of personal theft only through the benchmark on the right-hand side of \eqref{eq:patron-dominance}. In particular, increases in delegation quality and decreases in poor outside options expand the set of states in which rich agents choose patronage over both self-theft and abstention.
+\end{corollary}
+
+\begin{proof}
+See Appendix \ref{app:proofs}. The derivative of \eqref{eq:patron-payoff} with respect to $\phi_t$ is positive, the derivatives with respect to $\lambda_t$ and $k$ are negative, and the comparison against personal theft depends on whether these changes also widen the gap in \eqref{eq:patron-dominance}.
+\end{proof}
+
+These are exactly the margins varied later in the simulation figures. Patronage expands when delegated targeting becomes more effective, contracts when the outside option of poor workers strengthens, and weakens when contracting becomes expensive. The comparative statics in the code therefore match the comparative statics in the model.
+
+\subsection{The switch from patronage to guarding}
+
+If patronage succeeds for long enough, it changes the environment that made it profitable in the first place. Poor wealth is depleted, so $L_t$ declines over time as the supply of lucrative unguarded targets shrinks. At the same time, elite wealth rises, making concentrated fortunes worth defending. To capture the latter margin, let $\chi_t \in (0,1)$ denote the residual probability that elite wealth is targeted successfully when it is merely occupied but not formally guarded. This residual risk is low during active patronage because the patron remains at home and because dependent thieves have a reason not to antagonize the patrons who pay them. It need not remain low forever. Once patronage thins the poor prey base and contractual relations unravel, poaching against elites or opportunistic raids by former dependents become more attractive. Occupancy alone no longer replicates the discipline previously created by an active patronage network.
+
+If elite agent $i$ hires a guard at wage $g$, and guarding blocks a raid with probability $q_t$, the expected value of protection is the avoided expected loss on concentrated wealth:
+\begin{equation}
+\pi^{\mathrm{guard}}_{it} = q_t \chi_t \gamma_E w_{it} - g,
+\label{eq:guard-payoff}
+\end{equation}
+where $\gamma_E \in (0,1)$ is the fraction of elite wealth at stake in a successful elite raid. Poor workers accept guard employment provided the wage weakly exceeds their best alternative, which in the model means
+\begin{equation}
+g \ge \max\{o_{jt}, \underline{u}_{jt}\},
+\label{eq:guard-IR}
+\end{equation}
+where $\underline{u}_{jt}$ is a noncriminal fallback option. The simulation imposes this acceptance condition directly when guards are hired from the poorest available agents.
+
+The rich agent compares \eqref{eq:guard-payoff} with \eqref{eq:patron-payoff}. Guarding dominates patronage whenever the expected value of avoided elite loss exceeds the surplus from one more round of delegated predation:
+\begin{equation}
+q_t \chi_t \gamma_E w_{it} - g \ge \beta\left(L_t - k - o_{jt}\right).
+\label{eq:guard-dominance}
+\end{equation}
+
+\begin{theorem}[Endogenous switch to guarding]
+\label{thm:guarding}
+Suppose guard labor is available at wage $g$ satisfying \eqref{eq:guard-IR} and patronage is initially feasible. Then guarding is optimal for elite agent $i$ whenever
+\begin{equation}
+w_{it} \ge \widehat{w}^{G}_t \equiv \frac{\beta\left(L_t - k - o_{jt}\right) + g}{q_t \chi_t \gamma_E}.
+\label{eq:guard-threshold}
+\end{equation}
+Moreover, $\widehat{w}^{G}_t$ falls as the prey base among the poor is depleted, because $L_t - o_{jt}$ declines with $\bar{w}^{H}_t$ and $\bar{w}^{P}_t$.
+\end{theorem}
+
+\begin{proof}
+See Appendix \ref{app:proofs}. Rearranging \eqref{eq:guard-dominance} yields the threshold. Depletion reduces the right-hand side of \eqref{eq:guard-dominance}, lowering the elite wealth level at which guarding becomes privately optimal.
+\end{proof}
+
+Several timing and role ambiguities also disappear under this threshold comparison. Rich households need not hire guards at the outset because elite wealth is not yet concentrated enough and active patronage already creates informal deterrence. Guards emerge later even though rich households were occupied earlier because occupancy no longer suffices once concentrated wealth becomes a tempting target and patronage ceases to discipline the population that once supplied predatory labor. The direction of predation also remains clear: during patronage, poor thieves are usually robbing poor households for rich principals, and once guarding dominates the same pool of poor agents may be reallocated from predation to protection.
+
+\begin{corollary}[Comparative statics of guarding]
+\label{cor:guard-statics}
+The guarding threshold $\widehat{w}^{G}_t$ in \eqref{eq:guard-threshold} is decreasing in guard effectiveness $q_t$, decreasing in elite exposure $\chi_t$ and elite raid severity $\gamma_E$, increasing in the guard wage $g$, and increasing in the residual surplus from patronage $\beta(L_t-k-o_{jt})$. Guarding therefore becomes more likely when elite wealth is highly exposed and easily defended, and less likely when patronage remains highly profitable or guard labor becomes expensive.
+\end{corollary}
+
+\begin{proof}
+See Appendix \ref{app:proofs}. The claims follow from direct differentiation of \eqref{eq:guard-threshold} with respect to the relevant parameters.
+\end{proof}
+
+Stronger guarding technology or greater elite exposure expands the region in which protection is privately optimal. Stronger patronage surplus or more expensive guard labor contracts that region. The move to policing is therefore an endogenous choice over technologies of control.
+
+\subsection{Welfare}
+
+The welfare criterion has to capture inequality and resource dissipation at the same time. An incomplete honest shock can move a society organized around reciprocal corruption toward more unequal and more resource-intensive regimes, while aggregate wealth alone remains uninformative because the benchmark conserves total wealth by construction. The analysis therefore uses discounted utilitarian welfare with explicit resource costs:
+\begin{equation}
+W_0 = \mathbb{E}_0 \sum_{t=0}^{\infty} \delta^t \mathcal{W}_t,
+\qquad
+\mathcal{W}_t = \sum_{i=1}^{N} u(w_{it}) - c_T n_t^{S} - k n_t^{H} - g n_t^{G} - \Psi_t,
+\label{eq:welfare}
+\end{equation}
+where $u$ is strictly increasing and strictly concave, $n_t^{S}$ is the number of personal thieves, $n_t^{H}$ is the number of active patron-thief contracts, $n_t^{G}$ is the number of guards, and $\Psi_t$ denotes expected punishment losses.
+
+\begin{proposition}[Redistribution, inequality, and resource cost]
+\label{prop:welfare}
+Suppose aggregate wealth $\sum_i w_{it}$ is fixed at date $t$ and $u$ is concave. Then any mean preserving spread of the wealth distribution weakly lowers $\sum_i u(w_{it})$. If, in addition, two regimes with the same aggregate wealth differ only in that one has weakly greater inequality and strictly greater values of $n_t^{S}$, $n_t^{H}$, $n_t^{G}$, or $\Psi_t$, then the latter regime yields strictly lower period welfare $\mathcal{W}_t$.
+\end{proposition}
+
+\begin{proof}
+See Appendix \ref{app:proofs}. The first claim is Jensen's inequality. The second follows because the cost terms enter linearly and negatively in \eqref{eq:welfare}.
+\end{proof}
+
+A balanced corruption regime can already be normatively poor if theft effort and punishment risk consume resources, even when the distribution remains equal. Once the honest perturbation generates inequality and induces contracting and guarding costs, welfare can fall even if total wealth is approximately conserved in the short run. The relevant object is therefore distribution plus risk plus deadweight cost, and not redistribution alone.
+
+\begin{corollary}[Guarding may improve welfare relative to patronage]
+\label{cor:guard-welfare}
+Fix the wealth distribution at date $t$. If adopting guarding lowers expected theft effort, contracting activity, and punishment losses by more than the resulting guard wage bill, then guarding raises $\mathcal{W}_t$ relative to patronage even though it need not restore the welfare of the original balanced benchmark.
+\end{corollary}
+
+\begin{proof}
+See Appendix \ref{app:proofs}. The difference in period welfare is the reduction in theft-related costs minus the new guarding expenditure.
+\end{proof}
+
+Organized enforcement can be privately attractive for elites and even socially preferable to active patronage on a utilitarian measure, while still leaving society worse off than the initial equal benchmark once one accounts for the path by which elite wealth was accumulated. The model therefore leaves room for a limited welfare improvement from policing relative to patronage without mistaking that improvement for a return to egalitarian order.
+
+A balanced theft cycle is a coherent benchmark in the unit transfer stage game. A single permanent honest perturbation breaks that benchmark in the repeated game when wealth-dependent exposure is strong enough. After symmetry breaks, proportional theft together with weak poor outside options makes patronage feasible and profitable. Later, depletion of the prey base and concentration of elite wealth make guarding privately optimal. The analytical results identify those margins, and the simulations trace their timing, prevalence, and welfare consequences.

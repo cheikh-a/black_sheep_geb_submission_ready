@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{hyperref}
+
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\IfFontExistsTF{TeX Gyre Termes}{
+  \setmainfont{TeX Gyre Termes}
+}{
+  \setmainfont{Times New Roman}
+}
+
+\setstretch{1.2}
+\hypersetup{
+  colorlinks = true,
+  linkcolor = blue,
+  urlcolor = blue
+}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+{\Large \textbf{No Country for Honest Men: Balanced Theft, Endogenous Patronage, and the Emergence of Enforcement}}\\[1.5em]
+Cheikh A. M. Ndiaye\\[0.5em]
+Université Laval\\[0.25em]
+Corresponding author: \href{mailto:candi12@ulaval.ca}{candi12@ulaval.ca}\\[1.5em]
+\end{center}
+
+\noindent \textbf{Abstract}\\
+A society in which each household steals from another can remain equal when successful raids form a balanced cycle. In \emph{The Black Sheep}, Italo Calvino follows the breakdown of that balance toward hierarchy and policing, and this paper formalizes that sequence. A unit transfer benchmark first shows that balanced reciprocal theft is a weak Nash equilibrium under symmetry. In an infinite-horizon repeated version with stationary Markov behavior, one permanently honest agent destroys stationarity of the original cycle whenever the first night windfall pushes an adjacent household above an exposure threshold. A proportional transfer extension then endogenizes stratification. Rich households prefer delegated theft to personal theft when delegated loot exceeds the worker outside option and contracting cost, and they later replace thieves with guards once concentrated wealth and prey depletion make protection more valuable than further predation. Simulations trace the resulting transition from local asymmetry to class differentiation, patronage, selective protection, rising inequality, and lower utilitarian welfare once theft, contracting, guarding, and punishment consume resources.
+
+\vspace{1em}
+\noindent \textbf{Keywords:} repeated games, corruption equilibria, patronage, endogenous enforcement, inequality
+
+\par\noindent \textbf{JEL classification:} C73, D74, K42, O17
+
+\vspace{1em}
+\noindent \textbf{Declaration of competing interest}\\
+The author declares no known competing financial interests or personal relationships that could have appeared to influence the work reported in this article.
+
+\vspace{1em}
+\noindent \textbf{Data availability}\\
+All code, generated simulation outputs, and build scripts required to reproduce the figures and tables are available at \href{https://github.com/cheikh-a/black_sheep_geb}{github.com/cheikh-a/black\_sheep\_geb}.
+
+\end{document}

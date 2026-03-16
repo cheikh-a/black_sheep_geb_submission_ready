@@ -1,0 +1,262 @@
+\section{Appendix}
+
+\subsection{Proofs}
+\label{app:proofs}
+
+This appendix collects the proof details omitted from the main text. None of the omitted steps is especially difficult. The purpose of placing them here is simply to keep the main text readable while making the logical dependence of the results explicit. Throughout, the benchmark unit loot is $\tau = 1$ unless otherwise noted.
+
+\subsubsection*{Proof of Lemma \ref{lem:balanced-accounting}}
+
+Fix a balanced theft cycle $\sigma$ and suppose every agent enters the period with wealth $\bar{w}$. By definition of a balanced cycle, each agent $i$ undertakes exactly one successful outgoing raid against $\sigma(i)$ and suffers exactly one incoming successful raid by $\sigma^{-1}(i)$. Equation \eqref{eq:benchmark-wealth-update} therefore becomes
+\[
+w_{i,t+1} = \bar{w} - \tau + \tau = \bar{w}
+\]
+for every agent $i$. Summing across agents yields
+\[
+\sum_{i=1}^{N} w_{i,t+1} = \sum_{i=1}^{N} \bar{w} = N \bar{w} = \sum_{i=1}^{N} w_{it}.
+\]
+Hence wealth is preserved both agent by agent and in aggregate. \qed
+
+\subsubsection*{Proof of Proposition \ref{prop:balanced-cycle}}
+
+Take an arbitrary agent $i$ in a balanced theft cycle. If $i$ follows the prescribed action, he pays the effort cost $c_T$, loses one unit to the incoming raid, and gains one unit from his outgoing raid, finishing with $\bar{w} - c_T$. Consider three classes of unilateral deviations.
+
+First, suppose $i$ deviates by raiding a different victim while still going out to steal. Since all nondeviating households remain absent under the balanced-cycle profile, the alternative victim is still vulnerable. The deviator still obtains one unit of loot and still suffers the incoming raid from $\sigma^{-1}(i)$, so the deviating payoff remains $\bar{w} - c_T$. Such a deviation is therefore payoff equivalent.
+
+Second, suppose $i$ deviates by staying home. Then the raid on $i$ fails because the house is occupied, but $i$ gives up the one unit he would otherwise have taken from $\sigma(i)$. The deviating payoff is $\bar{w} - \tau$. Since $c_T \le \tau$, following the cycle yields $\bar{w} - c_T \ge \bar{w} - \tau$, so staying home is not strictly profitable.
+
+Third, suppose $i$ contemplates a mixed deviation over alternative victims and staying home. Since neither pure deviation is strictly profitable, no mixture of them is strictly profitable either. Hence no unilateral deviation improves on the balanced-cycle payoff, and the profile is a weak Nash equilibrium. \qed
+
+\subsubsection*{Proof of Lemma \ref{lem:first-night}}
+
+Let $h$ be the permanently honest agent, $p = \sigma^{-1}(h)$ his predecessor in the original cycle, and $q = \sigma(h)$ his successor. At $t=0$, agent $h$ stays home. Because occupied houses cannot be burgled in the benchmark environment, the raid by $p$ against $h$ fails, so $p$ gains no loot from his planned target. Agent $h$ also undertakes no outgoing raid, so $q$ is not robbed by $h$. All other agents follow the original cycle exactly.
+
+Now compute end-of-night wealth. Agent $h$ neither loses nor gains, so $w_{h1} = \bar{w}$. Agent $p$ is still robbed by his own predecessor but gains nothing from his failed attempt on $h$, so $w_{p1} = \bar{w} - \tau$. Agent $q$ still robs his own target but is no longer robbed by $h$, so $w_{q1} = \bar{w} + \tau$. Every other agent both loses one unit and gains one unit, hence remains at $\bar{w}$. This proves \eqref{eq:first-night-accounting}. \qed
+
+\subsubsection*{Proof of Theorem \ref{thm:no-stationary-one-honest}}
+
+By Lemma \ref{lem:first-night}, the successor $q$ enters period $t=1$ with wealth $w_{q1} = \bar{w} + \tau$. The expected one period net payoff from personal theft at wealth $w$ is
+\[
+\pi^{S}(w) = \tau - \rho w - c_T.
+\]
+The payoff from staying home is normalized to zero. Therefore the agent strictly prefers staying home whenever $w > \widehat{w} = (\tau - c_T)/\rho$.
+
+Assumption \ref{ass:threshold} states that $\bar{w} < \widehat{w} \le \bar{w} + \tau$. The lower inequality ensures that at the symmetric benchmark wealth level $\bar{w}$ an agent weakly prefers theft or is indifferent, which is why the original cycle can be sustained before the honest perturbation. The upper inequality ensures that after the first night windfall the successor's wealth lies at or above the cutoff. Hence
+\[
+w_{q1} = \bar{w} + \tau \ge \widehat{w}
+\]
+and, if the inequality is strict, $\pi^{S}(w_{q1}) < 0$; if equality holds, the agent is indifferent and any stationary selection that retains the original cycle is knife-edge. In either case, once the honest perturbation moves the successor to or beyond the threshold, the original balanced pattern is no longer a robust stationary continuation for all agents other than $h$.
+
+To prove the theorem as stated, suppose by contradiction that there exists a stationary Markov equilibrium preserving the original balanced theft pattern among all nonhonest agents. Then $q$ must choose personal theft at state $w_{q1}$. But the threshold condition implies that staying home weakly dominates, and under strict inequality strictly dominates, personal theft at exactly that state. This contradicts the alleged stationary continuation. Therefore no such stationary Markov equilibrium exists. \qed
+
+\subsubsection*{Proof of Lemma \ref{lem:contract-feasibility}}
+
+Fix a rich patron $i$ and a candidate poor thief $j$. Let delegated gross loot be $L_t$, contracting cost $k$, and the outside option of the poor worker $o_{jt}$. A contract with terms $(s_{ijt}, \alpha_{ijt})$ is feasible if the participation constraint of the thief holds:
+\[
+s_{ijt} + \alpha_{ijt}L_t \ge o_{jt}.
+\]
+The net return of the patron from the contract is
+\[
+(1-\alpha_{ijt})L_t - s_{ijt} - k = L_t - \left(s_{ijt} + \alpha_{ijt}L_t\right) - k.
+\]
+For some contract to be mutually acceptable, there must exist a transfer to the thief that is at least $o_{jt}$ and leaves the patron weakly nonnegative. This requires
+\[
+o_{jt} \le s_{ijt} + \alpha_{ijt}L_t \le L_t - k.
+\]
+Such an interval exists if and only if $L_t - k - o_{jt} \ge 0$, with strict inequality for strictly positive joint surplus. This is exactly condition \eqref{eq:feasibility}. \qed
+
+\subsubsection*{Proof of Proposition \ref{prop:patronage}}
+
+Suppose \eqref{eq:feasibility} holds, so total joint surplus is
+\[
+\Sigma_t = L_t - k - o_{jt} > 0.
+\]
+Under the bargaining rule in \eqref{eq:bargaining-rule}, the thief receives
+\[
+o_{jt} + (1-\beta)\Sigma_t
+\]
+in expected value, while the patron receives the residual
+\[
+L_t - k - \left[o_{jt} + (1-\beta)\Sigma_t\right]
+ = L_t - k - o_{jt} - (1-\beta)\Sigma_t
+ = \beta \Sigma_t.
+\]
+This proves \eqref{eq:patron-payoff}. Hiring dominates abstention whenever $\beta \Sigma_t > 0$, and it dominates personal theft whenever
+\[
+\beta \Sigma_t > m_t - \rho w_{it} - c_T.
+\]
+Combining the two comparisons yields \eqref{eq:patron-dominance}. \qed
+
+\subsubsection*{Proof of Corollary \ref{cor:patronage-statics}}
+
+Using \eqref{eq:patron-payoff} together with $L_t = \phi_t \gamma \bar{w}^{H}_t$ and $o_{jt} = \lambda_t \gamma \bar{w}^{P}_t - c_T$, patron payoff can be written as
+\[
+\pi^{\mathrm{hire}}_{ijt}
+=
+\beta\left(\phi_t \gamma \bar{w}^{H}_t - k - \lambda_t \gamma \bar{w}^{P}_t + c_T\right).
+\]
+Differentiating yields
+\[
+\frac{\partial \pi^{\mathrm{hire}}_{ijt}}{\partial \phi_t}
+=
+\beta \gamma \bar{w}^{H}_t > 0,
+\qquad
+\frac{\partial \pi^{\mathrm{hire}}_{ijt}}{\partial \lambda_t}
+=
+- \beta \gamma \bar{w}^{P}_t < 0,
+\qquad
+\frac{\partial \pi^{\mathrm{hire}}_{ijt}}{\partial k}
+=
+-\beta < 0.
+\]
+Thus patron payoff rises with delegation quality and falls with poor outside options and contracting cost. Since patronage is chosen when \eqref{eq:patron-dominance} holds, any change that raises the left-hand side of that inequality, holding the right-hand side fixed, expands the set of states in which patronage dominates. \qed
+
+\subsubsection*{Proof of Theorem \ref{thm:guarding}}
+
+Elite agent $i$ compares the payoff from guarding,
+\[
+\pi^{\mathrm{guard}}_{it} = q_t \chi_t \gamma_E w_{it} - g,
+\]
+with the payoff from one more patron-thief contract,
+\[
+\pi^{\mathrm{hire}}_{ijt} = \beta\left(L_t - k - o_{jt}\right).
+\]
+Guarding is optimal if and only if
+\[
+q_t \chi_t \gamma_E w_{it} - g \ge \beta\left(L_t - k - o_{jt}\right),
+\]
+which rearranges to
+\[
+w_{it} \ge \frac{\beta\left(L_t - k - o_{jt}\right)+g}{q_t \chi_t \gamma_E} \equiv \widehat{w}^{G}_t.
+\]
+This proves the threshold expression in \eqref{eq:guard-threshold}. To show that the threshold falls as the poor prey base is depleted, note that both $L_t = \phi_t \gamma \bar{w}^{H}_t$ and $o_{jt} = \lambda_t \gamma \bar{w}^{P}_t - c_T$ depend positively on the wealth of the poor. Under the maintained assumption that delegated targeting advantage shrinks more slowly than the broad poor outside option, depletion lowers net delegated surplus $L_t - o_{jt}$ and hence lowers the threshold wealth level at which guarding dominates. \qed
+
+\subsubsection*{Proof of Corollary \ref{cor:guard-statics}}
+
+Write the guarding threshold as
+\[
+\widehat{w}^{G}_t
+=
+\frac{\beta(L_t-k-o_{jt}) + g}{q_t \chi_t \gamma_E}.
+\]
+Direct differentiation gives
+\[
+\frac{\partial \widehat{w}^{G}_t}{\partial q_t}
+=
+-\frac{\beta(L_t-k-o_{jt}) + g}{q_t^2 \chi_t \gamma_E} < 0,
+\qquad
+\frac{\partial \widehat{w}^{G}_t}{\partial \chi_t}
+=
+-\frac{\beta(L_t-k-o_{jt}) + g}{q_t \chi_t^2 \gamma_E} < 0,
+\]
+\[
+\frac{\partial \widehat{w}^{G}_t}{\partial \gamma_E}
+=
+-\frac{\beta(L_t-k-o_{jt}) + g}{q_t \chi_t \gamma_E^2} < 0,
+\qquad
+\frac{\partial \widehat{w}^{G}_t}{\partial g}
+=
+\frac{1}{q_t \chi_t \gamma_E} > 0.
+\]
+Finally,
+\[
+\frac{\partial \widehat{w}^{G}_t}{\partial \{\beta(L_t-k-o_{jt})\}}
+=
+\frac{1}{q_t \chi_t \gamma_E} > 0.
+\]
+Hence stronger guarding technology or greater elite vulnerability lowers the wealth threshold for protection, while more profitable patronage or more expensive guard labor raises it. \qed
+
+\subsubsection*{Proof of Proposition \ref{prop:welfare}}
+
+Fix date $t$ and suppose aggregate wealth $\sum_i w_{it}$ is fixed. Let $u$ be concave. If one wealth vector is a mean preserving spread of another, then by the Hardy-Littlewood-Polya majorization theorem, or equivalently by Jensen's inequality applied to pairwise spreads, the more unequal vector yields a weakly smaller value of $\sum_i u(w_{it})$. This proves the first claim.
+
+Now compare two regimes with the same aggregate wealth. If one regime has weakly greater inequality, then its utility sum is weakly lower. If, in addition, at least one of the cost terms $n_t^{S}$, $n_t^{H}$, $n_t^{G}$, or $\Psi_t$ is strictly larger and none is smaller, then subtracting those costs from the already weakly smaller utility sum yields strictly lower period welfare $\mathcal{W}_t$. This proves the second claim. \qed
+
+\subsubsection*{Proof of Corollary \ref{cor:guard-welfare}}
+
+Fix the wealth distribution. The difference between period welfare under guarding and period welfare under patronage is
+\[
+\Delta \mathcal{W}_t
+=
+- g n_t^{G}
+- c_T n_t^{S,\mathrm{guard}}
+- k n_t^{H,\mathrm{guard}}
+- \Psi_t^{\mathrm{guard}}
++ c_T n_t^{S,\mathrm{pat}}
++ k n_t^{H,\mathrm{pat}}
++ \Psi_t^{\mathrm{pat}}.
+\]
+If the reduction in theft effort cost, contracting cost, and punishment loss exceeds the new guard wage bill, then $\Delta \mathcal{W}_t > 0$. Since the wealth distribution is fixed by hypothesis, the utility term cancels. Hence guarding raises welfare relative to patronage under the stated condition. \qed
+
+\subsection{Alternative assumptions and scope}
+
+Several assumptions deserve comment because they determine both what the paper proves and what it leaves open. The first is the use of a unit transfer benchmark followed by a proportional transfer extension. A single proportional model could in principle have been used throughout. The difficulty is that the egalitarian balance at the beginning of the story by Calvino is most transparent when every successful raid transfers the same unit amount and every agent has exactly one incoming and one outgoing link. The benchmark therefore isolates the cycle cleanly. Once the paper turns to inequality and class formation, however, the unit transfer environment becomes too rigid because it cannot represent the idea that richer agents risk more by leaving home. The proportional extension is introduced at exactly that point and no earlier.
+
+The second assumption concerns stationary Markov strategies in the honest-perturbation theorem. A reader might ask whether history-dependent punishments could sustain a one-honest continuation even after the first windfall. The answer may well be yes in some environments, but that is not the object of the theorem. The theorem isolates the local best-response logic that the simulation later implements. It says that once the wealth of the successor moves above the exposure threshold, the original cycle is not a stationary continuation. That is the appropriate statement for a paper interested in regime transition and not in the folk-theorem support of arbitrary histories.
+
+The third assumption concerns the outside option of poor workers. The paper models it as weak because poor agents compete for a depleted set of vulnerable targets and because bargaining power is tilted toward patrons. One could instead model search frictions, repeated matching, or explicit auctioning of predatory labor. Any of those would add realism, but the key analytical requirement would remain the same: patronage must create a wedge between delegated gross returns and the best alternative available to poor workers. Without that wedge, the contract market has no surplus to divide.
+
+The fourth assumption concerns guarding. In the model, guarding becomes attractive once occupancy alone no longer fully protects concentrated wealth after patronage weakens and poaching risk rises. This is summarized by the residual elite-risk term $\chi_t$. A more elaborate microfoundation could model betrayal by former hired thieves, explicit coordination among freelancers, or the public-good aspect of policing. The reduced form used here is meant only to capture the fact that highly concentrated wealth becomes worth defending with a more dedicated technology than merely staying home.
+
+\subsection{Simulation implementation details}
+
+This subsection records the simulation algorithm in enough detail that a reader can map every figure in the paper to a precise computational step. The code itself is the authoritative implementation, but the written algorithm helps align the appendix with the manuscript's notation.
+
+\begin{enumerate}[leftmargin=1.5em]
+    \item Initialize $N$ agents with common wealth $\bar{w}$, assign the balanced theft permutation $\sigma$, and designate the initial honest set. In the baseline path the honest set contains one permanent honest agent.
+    \item Run the deterministic benchmark perturbation. On the first night the honest agent stays home, all other agents follow the original cycle, and wealth is updated according to the accounting in Lemma \ref{lem:first-night}.
+    \item In later benchmark periods, let each nonhonest agent compare current wealth to the threshold $\widehat{w}$ in \eqref{eq:threshold}. Agents above the threshold stay home; agents below it continue the cycle.
+    \item For the proportional transfer simulations, reinitialize from the common wealth state and apply the first honest perturbation, then classify rich and elite agents each period using the threshold multipliers $\theta_R$ and $\theta_E$.
+    \item Compute candidate personal theft returns for rich agents using \eqref{eq:personal-payoff}. Compute candidate contract surplus using \eqref{eq:total-surplus} and accept only contracts satisfying \eqref{eq:feasibility}. Order patrons from richest to poorest and match them to the poorest available workers.
+    \item Assign hired thieves to the high value poor target set $H_t$, freelancers to vulnerable households ranked by expected loot, and guards to elite households satisfying \eqref{eq:guard-threshold}. Apply the guard acceptance condition \eqref{eq:guard-IR}.
+    \item Realize raids sequentially. Each realized transfer is based on the victim's remaining wealth at the moment of attack, so multiple attacks on the same house have diminishing returns within a period.
+    \item Apply wages, loot shares, contracting costs, guard wages, and punishment losses. Update the wealth vector and the role vector.
+    \item Compute inequality statistics, welfare components, first entry times into patronage and guarding, and the regime label for the period. Store these outputs before advancing to the next date.
+    \item Repeat until the simulation horizon is reached. Store processed data, figures, and tables through the reproducible build pipeline documented in the replication materials.
+\end{enumerate}
+
+Three implementation choices are especially important. First, wealth changes are recorded in realized rather than merely expected values, but the occupational comparisons are based on expected payoff formulas that correspond to the theory. Second, occupied but unguarded houses are treated differently in the first night benchmark and the later stochastic simulations. In the benchmark they are perfectly safe because that is what the instability theorem requires. In the later simulations they are imperfectly safe because concentrated wealth eventually requires a dedicated protection technology. Third, the code distinguishes clearly between rich households hiring poor thieves to rob poor targets and elites later hiring poor guards to defend elite assets. This distinction was blurred in the earlier draft and is now maintained throughout.
+
+\subsection{Supplementary robustness and regime frequencies}
+
+The phase diagram in the main text summarizes the most informative parameter plane, but the code evaluates broader robustness variations. These include changes in the outside option parameter, the number of initially honest agents, the guard punishment probability, and the vulnerability of occupied but unguarded homes. The overall message is the same as in the main text: the mechanism is robust within a substantial region, but it does not survive when the analytical conditions behind the main propositions are switched off. If delegated theft has no surplus, patronage disappears. If guarding is ineffective or too expensive, elites continue with patronage or the system collapses. If theft intensity is too low, the society can remain close to the transition regime for long periods.
+
+Table \ref{tab:regime-frequencies} reports the frequency with which each dominant regime appears in the main parameter sweep. These frequencies are not structural predictions, because they depend on the chosen grid. Their value is descriptive. They show that transition, coexistence, guarding, and collapse all appear in the sweep, which confirms that the model generates multiple successor regimes and not a single canned trajectory.
+
+\begin{table}[tbp]
+    \centering
+    \caption{Dominant regime frequencies in the main parameter sweep. The table reports how often each regime is the dominant late period outcome over the grid used to produce the phase diagram.}
+    \label{tab:regime-frequencies}
+    \input{tables/table_regime_frequencies.tex}
+\end{table}
+
+\subsection{Annotated passage map for \emph{The Black Sheep}}
+
+The translated story is not reproduced in full here because the text remains copyrighted. What can be included usefully is a passage map that identifies the parts of the story on which the model relies and the analytical object attached to each part. Figure \ref{fig:calvino-map} does that in paraphrased form.\footnote{The map is based on the sequence in \citet{calvino_1993}. It is intended as an interpretive guide to the model, not as a substitute for the story.}
+
+\begin{figure}[tbp]
+    \centering
+    \begin{tikzpicture}[
+        node distance = 0.9cm,
+        every node/.style = {align=left, font=\small},
+        story/.style = {draw=blue!60!black, rounded corners, fill=blue!6, text width=0.92\textwidth, inner sep=8pt},
+        model/.style = {draw=black!65, rounded corners, fill=black!3, text width=0.92\textwidth, inner sep=8pt}
+    ]
+        \node[story] (s1) {\textbf{Story movement 1.} Everyone steals at night and everyone is robbed in turn. Equality survives because outgoing predation and incoming predation offset one another.};
+        \node[model, below=of s1] (m1) {\textbf{Model fit.} Section \ref{sec:model} turns this opening into the unit transfer benchmark and the balanced theft cycle of Definition \ref{def:balanced-cycle} and Proposition \ref{prop:balanced-cycle}.};
+
+        \node[story, below=of m1] (s2) {\textbf{Story movement 2.} One man remains at home instead of stealing. The immediate effect is local, not universal. A planned burglar returns empty handed, and another household keeps what it otherwise would have lost.};
+        \node[model, below=of s2] (m2) {\textbf{Model fit.} Lemma \ref{lem:first-night} records the exact first night accounting. Theorem \ref{thm:no-stationary-one-honest} shows why that local windfall destroys stationarity once exposure rises with wealth.};
+
+        \node[story, below=of m2] (s3) {\textbf{Story movement 3.} Inequality appears. Some households become rich because the broken chain no longer offsets gains and losses symmetrically.};
+        \node[model, below=of s3] (m3) {\textbf{Model fit.} The proportional theft extension introduces wealth dependent exposure and turns class formation into a dynamic consequence, not a narrative assertion.};
+
+        \node[story, below=of m3] (s4) {\textbf{Story movement 4.} The rich no longer steal personally. They hire the poor to steal for them.};
+        \node[model, below=of s4] (m4) {\textbf{Model fit.} Lemma \ref{lem:contract-feasibility} and Proposition \ref{prop:patronage} derive the feasibility and surplus conditions for patronage. Figure \ref{fig:fig06_contracting_comparative_statics} studies how that surplus moves with targeting advantage and outside options.};
+
+        \node[story, below=of m4] (s5) {\textbf{Story movement 5.} Later the rich hire guards and police. Violence becomes more selective, but the unequal order remains.};
+        \node[model, below=of s5] (m5) {\textbf{Model fit.} Theorem \ref{thm:guarding} gives the guarding threshold. The welfare analysis and Figures \ref{fig:fig07_regime_phase_diagram} through \ref{fig:fig11_welfare_decomposition} show how organized protection can stabilize the spoils of the earlier transition.};
+    \end{tikzpicture}
+    \caption{Annotated passage map of the story by Calvino. The figure paraphrases the key narrative movements and indicates the point in the paper where each movement is formalized or simulated.}
+    \label{fig:calvino-map}
+\end{figure}
