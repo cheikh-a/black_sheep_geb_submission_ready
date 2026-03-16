@@ -13,7 +13,7 @@ The paper is written for *Games and Economic Behavior* because the contribution 
 
 The manuscript begins from Italo Calvino's "The Black Sheep," but the literary source is used to motivate a formal problem rather than to substitute for one. The paper connects corruption equilibria, convention selection, appropriation, hierarchy, and endogenous enforcement within a single sequence from reciprocal predation to selective protection. That sequence, together with the distinction between analytical and computational results, appears to fit the broad game theory and institutions audience of the journal.
 
-Code, simulation outputs, and the full figure-building workflow are available in the public project repository at [github.com/cheikh-a/black_sheep_geb](https://github.com/cheikh-a/black_sheep_geb).
+Code, simulation outputs, and the full figure-building workflow are available in the public project repository at [github.com/cheikh-a/black_sheep_geb_submission_ready](https://github.com/cheikh-a/black_sheep_geb_submission_ready). Tagged releases of that repository can be archived directly through Zenodo if the journal prefers a versioned DOI record.
 
 Thank you for your consideration.
 

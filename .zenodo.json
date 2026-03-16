@@ -1,0 +1,21 @@
+{
+  "title": "Replication package for No Country for Honest Men: Balanced Theft, Endogenous Patronage, and the Emergence of Enforcement",
+  "upload_type": "software",
+  "access_right": "open",
+  "description": "Public replication package for the Games and Economic Behavior submission. The repository contains the manuscript source, simulation code, generated outputs, and build scripts required to reproduce the figures and tables.",
+  "creators": [
+    {
+      "name": "Ndiaye, Cheikh A. M.",
+      "affiliation": "Universite Laval"
+    }
+  ],
+  "keywords": [
+    "game theory",
+    "corruption",
+    "patronage",
+    "endogenous enforcement",
+    "inequality",
+    "simulation"
+  ],
+  "language": "eng"
+}

@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the archived Zenodo release."
+title: "Replication package for No Country for Honest Men: Balanced Theft, Endogenous Patronage, and the Emergence of Enforcement"
+type: software
+authors:
+  - family-names: Ndiaye
+    given-names: Cheikh A. M.
+    affiliation: Universite Laval
+    email: candi12@ulaval.ca
+repository-code: "https://github.com/cheikh-a/black_sheep_geb_submission_ready"
+url: "https://github.com/cheikh-a/black_sheep_geb_submission_ready"
+abstract: "Public replication package containing the manuscript source, simulation code, generated outputs, and build scripts for the Games and Economic Behavior submission."
+keywords:
+  - game theory
+  - corruption
+  - patronage
+  - endogenous enforcement
+  - inequality
+  - simulation

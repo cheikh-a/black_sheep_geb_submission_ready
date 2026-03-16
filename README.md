@@ -1,4 +1,4 @@
-# Black Sheep GEB Revision
+# Black Sheep GEB Submission Package
 
 This repository rebuilds `No Country for Honest Men: Equilibrium and Inequality in Calvino's Black Sheep` as a theory-and-simulation paper aimed at *Games and Economic Behavior*. The repo contains:
 
@@ -11,7 +11,7 @@ This repository rebuilds `No Country for Honest Men: Equilibrium and Inequality 
 ## Layout
 
 ```text
-black_sheep_geb/
+black_sheep_geb_submission_ready/
   data/processed/
   output/figures/
   output/tables/
@@ -28,14 +28,14 @@ The code uses R throughout. Package management is handled with `renv`.
 ### One-time setup
 
 ```bash
-cd /Users/cheikhahmadou/Documents/Black_Sheep/black_sheep_geb
+cd /Users/cheikhahmadou/Documents/Black_Sheep/black_sheep_geb_submission_ready
 make setup
 ```
 
 ### Full build
 
 ```bash
-cd /Users/cheikhahmadou/Documents/Black_Sheep/black_sheep_geb
+cd /Users/cheikhahmadou/Documents/Black_Sheep/black_sheep_geb_submission_ready
 make all
 ```
 
@@ -73,3 +73,18 @@ make clean
 - The manuscript is compiled with XeLaTeX and uses standalone `tabular` inputs for every included table.
 - The manuscript distinguishes analytical results from computational findings throughout.
 - The `submission/` folder contains a GEB-oriented title page, cover letter, highlights, and journal-facing metadata.
+- Repository-level archival metadata for Zenodo and GitHub are stored in `.zenodo.json` and `CITATION.cff`.
+
+## Zenodo archival release
+
+This repository is public at `https://github.com/cheikh-a/black_sheep_geb_submission_ready` and is prepared for GitHub-to-Zenodo archiving.
+
+1. Log in at `https://zenodo.org` and connect the GitHub account.
+2. In the GitHub tab on Zenodo, enable archiving for `cheikh-a/black_sheep_geb_submission_ready`.
+3. Check the imported metadata from `.zenodo.json` and edit it on Zenodo only if the release-specific record needs additional fields.
+4. Create a GitHub release, for example `v1.0.0`.
+5. Wait for Zenodo to archive the release and mint the version DOI and concept DOI.
+6. Use `Zenodo` as the repository name in the journal submission system and paste the Zenodo record URL or DOI there.
+7. After the DOI is minted, update the data-availability statement and cover letter if you want the archival DOI to appear in the submission files themselves.
+
+The detailed release checklist is stored in `reports/zenodo_release_checklist.md`.

@@ -13,4 +13,6 @@ paper/*.log
 paper/*.out
 paper/*.synctex.gz
 output/logs/*.log
-
+submission/*.aux
+submission/*.log
+submission/*.out
