@@ -49,6 +49,33 @@
 \newcommand{\mediumfigwidth}{0.88\textwidth}
 \newcommand{\smallfigwidth}{0.74\textwidth}
 
+\renewenvironment{abstract}{
+  \begin{center}
+  \bfseries Abstract
+  \end{center}
+  \vspace{-0.7em}
+  \begingroup
+  \small
+  \setstretch{1.18}
+  \noindent
+}{
+  \par
+  \endgroup
+}
+
+\makeatletter
+\renewcommand{\maketitle}{%
+  \begin{center}
+    {\Large \@title \par}
+    \vspace{0.7em}
+    {\normalsize \@author \par}
+    \vspace{0.35em}
+    {\small \@date \par}
+  \end{center}
+  \vspace{0.7em}
+}
+\makeatother
+
 \hypersetup{
   colorlinks = true,
   linkcolor = blue,
