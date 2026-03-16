@@ -299,7 +299,7 @@ make_figures <- function() {
     scale_fill_manual(values = phase_palette, drop = FALSE) +
     labs(
       title = "Regime map",
-      subtitle = "Higher theft intensity and stronger enforcement shift the long-run regime in distinct ways.",
+      subtitle = "Higher theft intensity and stronger enforcement shift the medium-run regime in distinct ways.",
       x = expression(gamma),
       y = "Enforcement effectiveness",
       fill = NULL,
@@ -308,6 +308,7 @@ make_figures <- function() {
     theme_black_sheep()
   save_figure_outputs(fig07, "fig07_regime_phase_diagram", 7.5, 4.8)
 
+  role_levels <- c("Honest", "Stayers", "Freelance thieves", "Hired thieves", "Patrons", "Guards", "Elites", "Inactive")
   role_shares <- enforcement_agents |>
     mutate(plot_role = recode(
       role,
@@ -320,14 +321,13 @@ make_figures <- function() {
       stay = "Stayers",
       inactive = "Inactive"
     )) |>
+    mutate(plot_role = factor(plot_role, levels = role_levels)) |>
     count(time, plot_role) |>
+    complete(time, plot_role, fill = list(n = 0)) |>
     group_by(time) |>
     mutate(share = n / sum(n)) |>
     ungroup() |>
-    mutate(plot_role = factor(
-      plot_role,
-      levels = c("Honest", "Stayers", "Freelance thieves", "Hired thieves", "Patrons", "Guards", "Elites", "Inactive")
-    ))
+    arrange(time, plot_role)
 
   fig08 <- ggplot(role_shares, aes(time, share, fill = plot_role)) +
     geom_area(position = "stack", alpha = 0.9) +
@@ -344,7 +344,8 @@ make_figures <- function() {
       ),
       guide = guide_legend(nrow = 2)
     ) +
-    scale_y_continuous(labels = percent_format()) +
+    scale_y_continuous(labels = percent_format(), expand = expansion(mult = c(0, 0.02))) +
+    coord_cartesian(ylim = c(0, 1)) +
     labs(
       title = "Role composition changes as the system reorganizes",
       x = "Time",
@@ -498,23 +499,46 @@ make_figures <- function() {
     pivot_longer(cols = c(final_gini, final_welfare), names_to = "outcome", values_to = "metric") |>
     mutate(
       outcome = recode(outcome, final_gini = "Final Gini", final_welfare = "Final Welfare"),
-      parameter = recode(parameter, !!!pretty_parameter_labels)
+      parameter = factor(
+        recode(parameter, !!!pretty_parameter_labels),
+        levels = c("Contracting cost", "Occupied-house vulnerability", "Targeting advantage", "Theft intensity")
+      ),
+      dominant_regime = factor(
+        dominant_regime,
+        levels = c("Transition", "Guard regime", "Coexistence", "Collapse", "Patronage", "Balanced cycle")
+      ),
+      outcome = factor(outcome, levels = c("Final Gini", "Final Welfare"))
     ) |>
-    ggplot(aes(value, metric, colour = outcome)) +
-    geom_line(linewidth = 0.9) +
-    geom_point(size = 1.4) +
-    facet_wrap(~ parameter, scales = "free_x") +
+    ggplot(aes(value, metric, colour = outcome, group = 1)) +
+    geom_line(linewidth = 0.9, show.legend = FALSE) +
+    geom_point(aes(shape = dominant_regime, fill = dominant_regime), size = 2.2, stroke = 0.35, colour = "#333333") +
+    facet_grid(outcome ~ parameter, scales = "free", switch = "y") +
     scale_colour_manual(values = c("Final Gini" = "#B24C63", "Final Welfare" = "#356D9A")) +
+    scale_fill_manual(values = phase_palette, drop = TRUE) +
+    scale_shape_manual(
+      values = c(
+        "Transition" = 24,
+        "Guard regime" = 21,
+        "Coexistence" = 22,
+        "Collapse" = 23,
+        "Patronage" = 25,
+        "Balanced cycle" = 20
+      ),
+      drop = TRUE
+    ) +
     labs(
       title = "Robustness across key parameters",
-      subtitle = "The core mechanism survives changes in theft intensity, contract costs, vulnerability, and targeting advantage.",
+      subtitle = "Welfare is most responsive to theft intensity and occupied-house vulnerability, while inequality moves within a narrower band.",
       x = "Parameter value",
       y = "Outcome",
       colour = NULL,
-      caption = "Figure 12 shows that the main comparative-static patterns are not driven by a single baseline calibration."
+      fill = "Dominant regime",
+      shape = "Dominant regime",
+      caption = "Figure 12 shows how final welfare and final inequality move in one-dimensional sweeps around the baseline calibration. Marker shapes identify the dominant regime reached at each parameter value."
     ) +
-    theme_black_sheep()
-  save_figure_outputs(fig12, "fig12_robustness_panels", 10.4, 6.2)
+    theme_black_sheep() +
+    theme(strip.placement = "outside")
+  save_figure_outputs(fig12, "fig12_robustness_panels", 11.2, 6.8)
 }
 
 if (sys.nframe() == 0L) {
