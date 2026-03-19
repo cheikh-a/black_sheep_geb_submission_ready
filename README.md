@@ -27,15 +27,17 @@ The code uses R throughout. Package management is handled with `renv`.
 
 ### One-time setup
 
+Run from the repository root:
+
 ```bash
-cd /Users/cheikhahmadou/Documents/Black_Sheep/black_sheep_geb_submission_ready
 make setup
 ```
 
 ### Full build
 
+Run from the repository root:
+
 ```bash
-cd /Users/cheikhahmadou/Documents/Black_Sheep/black_sheep_geb_submission_ready
 make all
 ```
 
@@ -72,7 +74,7 @@ make clean
 - Figure generation is centralized in `src/07_make_figures.R`; table generation is centralized in `src/08_make_tables.R`.
 - The manuscript is compiled with XeLaTeX and uses standalone `tabular` inputs for every included table.
 - The manuscript distinguishes analytical results from computational findings throughout.
-- The `submission/` folder contains a GEB-oriented title page, cover letter, highlights, and journal-facing metadata.
+- Journal-specific submission material is kept outside the public replication archive.
 - Repository-level archival metadata for Zenodo and GitHub are stored in `.zenodo.json` and `CITATION.cff`.
 
 ## Zenodo archival release
