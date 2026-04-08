@@ -7,7 +7,7 @@ This appendix collects the proof details omitted from the main text. None of the
 
 \subsubsection*{Proof of Lemma \ref{lem:balanced-accounting}}
 
-Fix a balanced theft cycle $\sigma$ and suppose every agent enters the period with wealth $\bar{w}$. By definition of a balanced cycle, each agent $i$ undertakes exactly one successful outgoing raid against $\sigma(i)$ and suffers exactly one incoming successful raid by $\sigma^{-1}(i)$. Equation \eqref{eq:benchmark-wealth-update} therefore becomes
+Fix a balanced theft cycle $\sigma$ and suppose every agent enters the period with wealth $\bar{w}$. By definition of a balanced cycle, each household is unoccupied and is targeted by exactly one raider, so $m_{jt}=1$ for every $j$. Equation \eqref{eq:loss-gain} therefore implies $\ell_{it}(a_t)=\tau$ and $g_{it}(a_t)=\tau$ for every agent $i$. Equation \eqref{eq:benchmark-wealth-update} becomes
 \[
 w_{i,t+1} = \bar{w} - \tau + \tau = \bar{w}
 \]
@@ -19,19 +19,25 @@ Hence wealth is preserved both agent by agent and in aggregate. \qed
 
 \subsubsection*{Proof of Proposition \ref{prop:balanced-cycle}}
 
-Take an arbitrary agent $i$ in a balanced theft cycle. If $i$ follows the prescribed action, he pays the effort cost $c_T$, loses one unit to the incoming raid, and gains one unit from his outgoing raid, finishing with $\bar{w} - c_T$. Consider three classes of unilateral deviations.
+Take an arbitrary agent $i$ in a balanced theft cycle. If $i$ follows the prescribed action, then $i$ leaves home, loses $\tau$ to the unique incoming raid, and gains $\tau$ from the unique outgoing raid, finishing with wealth $\bar{w}$.
 
-First, suppose $i$ deviates by raiding a different victim while still going out to steal. Since all nondeviating households remain absent under the balanced-cycle profile, the alternative victim is still vulnerable. The deviator still obtains one unit of loot and still suffers the incoming raid from $\sigma^{-1}(i)$, so the deviating payoff remains $\bar{w} - c_T$. Such a deviation is therefore payoff equivalent.
+If $i$ deviates to staying home, the incoming raid on $i$ fails because the house is occupied, but $i$ also gives up the outgoing loot. The deviating payoff is therefore still $\bar{w}$, so staying home is not strictly profitable.
 
-Second, suppose $i$ deviates by staying home. Then the raid on $i$ fails because the house is occupied, but $i$ gives up the one unit he would otherwise have taken from $\sigma(i)$. The deviating payoff is $\bar{w} - \tau$. Since $c_T \le \tau$, following the cycle yields $\bar{w} - c_T \ge \bar{w} - \tau$, so staying home is not strictly profitable.
-
-Third, suppose $i$ contemplates a mixed deviation over alternative victims and staying home. Since neither pure deviation is strictly profitable, no mixture of them is strictly profitable either. Hence no unilateral deviation improves on the balanced-cycle payoff, and the profile is a weak Nash equilibrium. \qed
+If instead $i$ deviates to another target $j \neq \sigma(i)$, then household $j$ is already targeted by exactly one raider under the balanced cycle. The deviator therefore creates congestion at $j$ and receives expected loot $\tau/2$ rather than $\tau$. The incoming raid on $i$ still succeeds because $i$ remains away from home. The deviating payoff is then
+\[
+\bar{w} - \tau + \frac{\tau}{2}
+=
+\bar{w} - \frac{\tau}{2}
+<
+\bar{w}.
+\]
+Thus every retargeting deviation is strictly worse, while staying home is payoff equivalent. No unilateral deviation is strictly profitable, so the balanced cycle is a weak Nash equilibrium. \qed
 
 \subsubsection*{Proof of Lemma \ref{lem:first-night}}
 
 Let $h$ be the permanently honest agent, $p = \sigma^{-1}(h)$ his predecessor in the original cycle, and $q = \sigma(h)$ his successor. At $t=0$, agent $h$ stays home. Because occupied houses cannot be burgled in the benchmark environment, the raid by $p$ against $h$ fails, so $p$ gains no loot from his planned target. Agent $h$ also undertakes no outgoing raid, so $q$ is not robbed by $h$. All other agents follow the original cycle exactly.
 
-Now compute end-of-night wealth. Agent $h$ neither loses nor gains, so $w_{h1} = \bar{w}$. Agent $p$ is still robbed by his own predecessor but gains nothing from his failed attempt on $h$, so $w_{p1} = \bar{w} - \tau$. Agent $q$ still robs his own target but is no longer robbed by $h$, so $w_{q1} = \bar{w} + \tau$. Every other agent both loses one unit and gains one unit, hence remains at $\bar{w}$. This proves \eqref{eq:first-night-accounting}. \qed
+Now compute end-of-night wealth. Agent $h$ neither loses nor gains, so $w_{h1} = \bar{w}$. Agent $p$ is still robbed by his own predecessor but gains nothing from his failed attempt on $h$, so $w_{p1} = \bar{w} - \tau$. Agent $q$ still robs his own target but is no longer robbed by $h$, so $w_{q1} = \bar{w} + \tau$. Every other agent both loses $\tau$ and gains $\tau$, hence remains at $\bar{w}$. This proves \eqref{eq:first-night-accounting}. \qed
 
 \subsubsection*{Proof of Theorem \ref{thm:no-stationary-one-honest}}
 
@@ -41,13 +47,19 @@ By Lemma \ref{lem:first-night}, the successor $q$ enters period $t=1$ with wealt
 \]
 The payoff from staying home is normalized to zero. Therefore the agent strictly prefers staying home whenever $w > \widehat{w} = (\tau - c_T)/\rho$.
 
-Assumption \ref{ass:threshold} states that $\bar{w} < \widehat{w} \le \bar{w} + \tau$. The lower inequality ensures that at the symmetric benchmark wealth level $\bar{w}$ an agent weakly prefers theft or is indifferent, which is why the original cycle can be sustained before the honest perturbation. The upper inequality ensures that after the first night windfall the successor's wealth lies at or above the cutoff. Hence
+Assumption \ref{ass:threshold} states that $\bar{w} < \widehat{w} < \bar{w} + \tau$. The lower inequality ensures that at the symmetric benchmark wealth level $\bar{w}$ an agent weakly prefers theft or is indifferent, which is why the original cycle can be sustained before the honest perturbation. The strict upper inequality ensures that after the first-night windfall the successor's wealth lies strictly above the cutoff. Hence
 \[
-w_{q1} = \bar{w} + \tau \ge \widehat{w}
+\pi^{S}(w_{q1})
+=
+\tau - \rho(\bar{w}+\tau) - c_T
+<
+\tau - \rho\widehat{w} - c_T
+=
+0
 \]
-and, if the inequality is strict, $\pi^{S}(w_{q1}) < 0$; if equality holds, the agent is indifferent and any stationary selection that retains the original cycle is knife-edge. In either case, once the honest perturbation moves the successor to or beyond the threshold, the original balanced pattern is no longer a robust stationary continuation for all agents other than $h$.
+so staying home is strictly better for the successor at state $w_{q1}$.
 
-To prove the theorem as stated, suppose by contradiction that there exists a stationary Markov equilibrium preserving the original balanced theft pattern among all nonhonest agents. Then $q$ must choose personal theft at state $w_{q1}$. But the threshold condition implies that staying home weakly dominates, and under strict inequality strictly dominates, personal theft at exactly that state. This contradicts the alleged stationary continuation. Therefore no such stationary Markov equilibrium exists. \qed
+To prove the theorem as stated, suppose by contradiction that there exists a stationary Markov equilibrium preserving the original balanced theft pattern among all nonhonest agents. Then $q$ must choose personal theft at state $w_{q1}$. But the threshold condition implies that staying home strictly dominates personal theft at exactly that state. This contradicts the alleged stationary continuation. Therefore no such stationary Markov equilibrium exists. \qed
 
 \subsubsection*{Proof of Lemma \ref{lem:contract-feasibility}}
 

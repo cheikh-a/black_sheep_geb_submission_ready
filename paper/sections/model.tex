@@ -1,11 +1,9 @@
 \section{Model}
 \label{sec:model}
 
-\subsection{Unified architecture and timing}
+\subsection{The unit transfer raiding game}
 
-Two layers organize the model. A unit transfer benchmark isolates the balanced accounting at the beginning of the fable by Calvino, with successful theft always transferring one unit, all agents starting symmetric, and the only live actions being to steal or stay home. A proportional transfer extension enters only after symmetry has been broken and adds the margins the benchmark cannot carry on its own: wealth-dependent exposure, contracting between rich patrons and poor thieves, and the later purchase of guards. The unit transfer environment defines the initial cycle and the first honest perturbation; the proportional transfer environment governs stratification, delegated theft, and organized enforcement. Keeping that sequence explicit removes the notational drift that otherwise arises when one environment is asked to carry every result.
-
-Time is discrete and indexed by $t = 0,1,2,\dots$. Agents are indexed by $i \in \{1,\dots,N\}$ with $N \ge 3$. Wealth at the beginning of period $t$ is $w_{it} \ge 0$. In the benchmark all agents begin with common wealth $\bar{w} > \tau$, where the unit loot is normalized to $\tau = 1$. In the extension the loot from a successful raid on victim $j$ is $\gamma w_{jt}$, where $\gamma \in (0,1)$. The notation used throughout the paper is collected in Table \ref{tab:notation}; the same symbols are used in the theory, the simulations, and the appendix proofs.
+The analysis begins from a repeated raiding game whose only purpose is to make the opening reciprocal order exact. Time is discrete and indexed by $t = 0,1,2,\dots$. Agents are indexed by $i \in \{1,\dots,N\}$ with $N \ge 3$, and wealth at the beginning of period $t$ is the publicly observed vector $w_t = (w_{1t},\dots,w_{Nt})$. In the benchmark all agents begin with common wealth $\bar{w} > \tau$, where $\tau > 0$ is the unit amount that can be stolen from an unoccupied house in one period. The richer proportional environment appears only after the benchmark and keeps the same state variable. The notation used throughout the paper is collected in Table \ref{tab:notation}; the same symbols are used in the theory, the simulations, and the appendix proofs.
 
 \begin{table}[tbp]
     \centering
@@ -14,25 +12,45 @@ Time is discrete and indexed by $t = 0,1,2,\dots$. Agents are indexed by $i \in 
     \input{tables/table_notation.tex}
 \end{table}
 
-Each period begins with observation of the wealth vector $w_t = (w_{1t},\dots,w_{Nt})$, continues with action choices, target selection, raids and guard interventions, and ends with the payment of wages, loot shares, contracting costs, guarding costs, and punishment losses that generate the next-period wealth vector $w_{t+1}$. In the benchmark the action set is $\{\text{steal}, \text{stay}\}$; in the extension, rich agents may additionally choose whether to hire a thief or a guard, and poor agents may accept employment as thieves or guards. This timing fixes the chronology used throughout. The honest agent is protected on the first night because he stays home when the first perturbation occurs. Rich households remain relatively safe in the patronage phase because they are occupied and because dependent thieves have little reason to attack the patrons who employ them. Guards become valuable later because concentrated wealth eventually attracts poaching and because the informal deterrence created by patronage weakens once the prey base among the poor is exhausted.
+In each benchmark period, agent $i$ chooses one action from the set
+\[
+A_i = \{H\} \cup \left(\{1,\dots,N\}\setminus\{i\}\right),
+\]
+where $H$ means staying home and $j \neq i$ means leaving home and attempting to raid household $j$. Occupancy determines vulnerability. If $a_{jt}=H$, household $j$ is occupied and no raid on $j$ succeeds in period $t$. If $a_{jt}\neq H$, household $j$ is unoccupied and can be raided. This is the only occupancy rule needed for the benchmark, and it makes the first honest night deterministic once one household stays home permanently.
 
-In the benchmark stage game, burglary serves as a reduced form device for balanced reciprocity. The proportional extension restores the margins that matter once wealth diverges. The restricted architecture isolates reciprocity, class formation, and enforcement without introducing production, audit technologies, or a fully solved Markov perfect state space.
+Target congestion is explicit. For any household $j$, let
+\[
+M_{jt} = \{i \neq j : a_{it}=j\},
+\qquad
+m_{jt} = |M_{jt}|.
+\]
+If $a_{jt}=H$, every attempted raid on $j$ fails. If $a_{jt}\neq H$ and $m_{jt}\ge 1$, at most one unit $\tau$ can be extracted from $j$ during period $t$, and that unit is divided in expected value equally across the raiders in $M_{jt}$. The benchmark therefore treats loot as rival and rules out the possibility that several agents can each take the same unit independently.
 
-\subsection{Baseline benchmark: balanced reciprocal theft}
-
-Let $\sigma$ be a permutation of $\{1,\dots,N\}$ with no fixed points. Under the profile induced by $\sigma$, each agent $i$ steals from $\sigma(i)$ and is in turn robbed by $\sigma^{-1}(i)$. The benchmark stage game assumes that a household that leaves home to steal is vulnerable to being robbed, whereas a household that stays home prevents a raid on that date. Since every agent steals in the benchmark profile, every household is absent and every planned raid succeeds. Each successful raid transfers one unit from victim to thief. Wealth at the end of the period therefore satisfies
+Define the realized loss of household $i$ and the expected loot of agent $i$ by
 \begin{equation}
-w_{i,t+1} = w_{it} - \tau \mathbf{1}\{\sigma^{-1}(i)\text{ raids } i\} + \tau \mathbf{1}\{i\text{ raids }\sigma(i)\}.
+\ell_{it}(a_t)
+=
+\tau \mathbf{1}\{a_{it}\neq H\}\mathbf{1}\{m_{it}\ge 1\},
+\qquad
+g_{it}(a_t)
+=
+\sum_{j\neq i}\mathbf{1}\{a_{it}=j\}\mathbf{1}\{a_{jt}\neq H\}\frac{\tau}{m_{jt}}.
+\label{eq:loss-gain}
+\end{equation}
+The benchmark abstracts from direct theft cost so that the reciprocal accounting is exact. End-of-period wealth is therefore
+\begin{equation}
+w_{i,t+1} = w_{it} - \ell_{it}(a_t) + g_{it}(a_t).
 \label{eq:benchmark-wealth-update}
 \end{equation}
-Along a permutation profile with one incoming and one outgoing raid per agent, both indicators equal one.
+
+\subsection{Balanced reciprocity}
 
 \begin{definition}[Balanced theft cycle]
 \label{def:balanced-cycle}
-A balanced theft cycle is a permutation profile $\sigma$ such that each agent undertakes exactly one outgoing raid and suffers exactly one incoming raid in the period.
+A balanced theft cycle is a permutation $\sigma$ of $\{1,\dots,N\}$ with no fixed points such that each agent $i$ chooses $a_i=\sigma(i)$.
 \end{definition}
 
-The basic accounting is immediate but worth stating explicitly because it is the benchmark against which everything else will be measured.
+Under a balanced theft cycle every household is unoccupied, every household is targeted by exactly one raider, and no target congestion appears because $m_j=1$ for every $j$. The basic accounting is then immediate but worth stating explicitly because the rest of the paper measures departures from this object.
 
 \begin{lemma}[Balanced accounting]
 \label{lem:balanced-accounting}
@@ -43,24 +61,22 @@ If all agents begin a period with common wealth $\bar{w}$ and play a balanced th
 See Appendix \ref{app:proofs}. Each agent loses exactly $\tau$ and gains exactly $\tau$, so wealth is unchanged agent by agent and therefore in aggregate.
 \end{proof}
 
-A weak equilibrium notion for the initial regime comes from end-of-period wealth net of the resource cost of personally going out to steal. Let $c_T \ge 0$ denote that cost. In the stripped-down benchmark the cost is small enough that stealing is weakly preferred to staying when all others maintain the cycle. Formally, an agent who follows the cycle ends with $\bar{w} - \tau + \tau - c_T = \bar{w} - c_T$, while an agent who stays home under universal theft avoids being robbed but also forgoes loot, ending with $\bar{w} - \tau$. Thus stealing is weakly better whenever $c_T \le \tau$.
-
 \begin{proposition}[Balanced reciprocity as a weak equilibrium]
 \label{prop:balanced-cycle}
-Suppose all agents begin with common wealth $\bar{w}$, all successful raids transfer $\tau = 1$, and the effort cost of personal theft satisfies $0 \le c_T \le \tau$. Then any balanced theft cycle is a weak Nash equilibrium of the one-shot stage game.
+In the one-shot unit transfer stage game, any balanced theft cycle is a weak Nash equilibrium.
 \end{proposition}
 
 \begin{proof}
-See Appendix \ref{app:proofs}. Under symmetry, deviating to a different victim merely permutes the identity of the counterparty and does not alter the deviator's end-of-period wealth. Deviating to staying home prevents the incoming raid on the deviator's house, but also sacrifices the outgoing loot. The deviation yields $\bar{w} - \tau$, while following the cycle yields $\bar{w} - c_T \ge \bar{w} - \tau$. Hence no unilateral deviation is strictly profitable.
+See Appendix \ref{app:proofs}. Deviating to staying home preserves the deviator's wealth but does not raise it, because the avoided loss is exactly offset by forgone loot. Deviating to a different target creates congestion, so expected loot falls below $\tau$ while the incoming loss remains. Hence no unilateral deviation is strictly profitable.
 \end{proof}
 
-Only a weak claim is needed at this stage. Universal predation can be mutually consistent and distributively neutral when every agent is both predator and prey in exactly the same way, which is enough to formalize the opening equilibrium in Calvino without claiming efficiency, strictness, or dynamic robustness. For the same reason, this object is not labeled a top-trading-cycle equilibrium. The graph of the benchmark resembles a cyclic allocation problem because every agent has one incoming and one outgoing link, and that resemblance is useful when thinking about local propagation after one link is broken. Yet the resemblance stops at the graph. Here transfers are coerced, victims impose no consent constraint, and one agent action changes the opportunity set of others through exposure and depletion. The benchmark therefore supports only a TTC-like cyclic intuition and does not inherit the incentive and core properties of the Shapley-Scarf environment.
+Only a weak claim is needed at this stage. The purpose of the benchmark is not to establish efficiency or to characterize the full set of equilibria. It is to show that a reciprocal predatory order can be a coherent strategic object once actions and congestion are written down exactly. The resulting graph is a directed cycle, and that graph theoretic resemblance to top trading cycles remains useful when one link later breaks. The resemblance goes no further. Transfers here are coercive, occupancy changes the opportunity set of others, and rivalry in extraction creates externalities that have no analogue in the voluntary exchange environment of \citet{shapley_scarf_1974}.
 
-\subsection{Honest perturbation and stationary instability}
+\subsection{A permanent honest household and stationary continuation}
 
-Dynamic analysis requires the horizon and the equilibrium concept to be stated before the result itself. Consider an infinite horizon repeated game with common discount factor $\delta \in (0,1)$. One agent, denoted $h$, is exogenously committed to honesty and chooses $\text{stay}$ in every period. All other agents can choose either personal theft or staying home in the benchmark environment. Strategies are restricted to be stationary and Markov in current wealth, so each agent conditions only on the current state and not on the full history. This restriction is substantive and is exactly the object needed to address the earlier horizon confusion, because the theorem concerns stationary Markov continuation after the first honest shock and not the full set of repeated equilibria sustained by elaborate punishments.
+The repeated benchmark keeps the same stage game and adds two restrictions immediately. The horizon is infinite with common discount factor $\delta \in (0,1)$, and strategies are restricted to be stationary and Markov in current wealth. A strategy for agent $i$ is therefore a map from the current state $w_t$ into an action in $A_i$. This is the equilibrium class studied in the theorem below. The argument does not characterize the full set of repeated outcomes that could be sustained by history-dependent punishments.
 
-Let $p = \sigma^{-1}(h)$ be the predecessor who planned to rob the honest agent, and let $q = \sigma(h)$ be the successor whom the honest agent would have robbed under universal participation. Since $h$ stays home at $t=0$, the raid by $p$ fails, while the raid that would have been undertaken by $h$ never occurs. If every other agent continues the benchmark cycle at $t=0$, then
+Fix one agent $h$ who is permanently honest and therefore chooses $H$ in every period. Let $\sigma$ denote the pre-perturbation balanced theft cycle, let $p = \sigma^{-1}(h)$ be the predecessor who planned to rob $h$, and let $q = \sigma(h)$ be the successor whom $h$ would have robbed under universal participation. If every other agent continues the old cycle on the first perturbed date, then the occupancy rule makes the first wealth change deterministic:
 \begin{equation}
 w_{h1} = \bar{w}, \qquad w_{p1} = \bar{w} - \tau, \qquad w_{q1} = \bar{w} + \tau,
 \label{eq:first-night-accounting}
@@ -76,7 +92,7 @@ Under the benchmark cycle with one permanently honest agent $h$, the first hones
 See Appendix \ref{app:proofs}. The honest agent neither steals nor is robbed, the predecessor fails in his attempted raid on an occupied house, and the successor is not robbed by the honest agent.
 \end{proof}
 
-To determine whether the original regime can continue, the model introduces exposure. If agent $i$ steals personally at date $t$, he leaves home and faces an expected exposure loss proportional to his own wealth. Let $\rho \in (0,1)$ denote the exposure coefficient. In the benchmark environment the expected one-period return from personal theft is
+The benchmark stage game is enough to show that exact reciprocity breaks. A withdrawal result needs one additional margin. Suppose that personal raiding in the repeated game carries direct effort cost $c_T \ge 0$ and expected exposure loss $\rho w_{it}$, with $\rho \in (0,1)$, because the raider leaves current wealth unattended while away from home. The expected one-period return from personal theft is then
 \begin{equation}
 \pi^{S}(w_{it}) = \tau - \rho w_{it} - c_T,
 \label{eq:self-theft-threshold}
@@ -90,10 +106,10 @@ such that an agent weakly prefers personal theft when $w_{it} \le \widehat{w}$ a
 
 \begin{assumption}[Interior exposure threshold]
 \label{ass:threshold}
-The exposure threshold satisfies $\bar{w} < \widehat{w} \le \bar{w} + \tau$.
+The exposure threshold satisfies $\bar{w} < \widehat{w} < \bar{w} + \tau$.
 \end{assumption}
 
-The assumption places the symmetric benchmark wealth level below the exposure cutoff and the first night windfall at or above it. Personal theft is still weakly attractive at $\bar{w}$, but no longer attractive after one unit of windfall. This is not a generic truth about crime. It identifies the narrow parameter region in which the first honest deviation in Calvino has the power to change the best response of the successor immediately.
+The assumption places the symmetric benchmark wealth level below the exposure cutoff and the first-night windfall above it. Personal theft remains privately viable at $\bar{w}$ but ceases to be optimal after one unit of windfall. This is a narrow comparative static statement and not a general theory of criminal choice.
 
 \begin{theorem}[No stationary one-honest continuation]
 \label{thm:no-stationary-one-honest}
@@ -104,13 +120,13 @@ Under Assumption \ref{ass:threshold}, there is no stationary Markov equilibrium 
 See Appendix \ref{app:proofs}. By Lemma \ref{lem:first-night}, the successor $q$ enters period $t=1$ with wealth $w_{q1} = \bar{w} + \tau$. Assumption \ref{ass:threshold} implies $w_{q1} > \widehat{w}$, so \eqref{eq:self-theft-threshold} yields $\pi^{S}(w_{q1}) < 0 = \pi^{N}(w_{q1})$. Thus $q$ strictly prefers staying home at $t=1$ and no longer continues to steal. Since the original balanced pattern requires $q$ to keep stealing, that pattern cannot be stationary after the perturbation.
 \end{proof}
 
-Under a transparent exposure threshold, the original balanced reciprocity pattern cannot remain a stationary Markov regime once exactly one agent is permanently honest. The theorem does not characterize the full set of repeated equilibria with one honest agent. In the simulation, agents who inherit the first night windfall stop personal theft once their wealth crosses the threshold implied by \eqref{eq:threshold}, so the computational rule coincides with the best response stated in the theorem.
+The theorem is deliberately local. It does not solve the full repeated game with one honest agent. It says only that the original balanced cycle cannot survive as a stationary Markov continuation once the first honest night moves the successor across the exposure threshold. That is exactly the comparison later implemented in the deterministic benchmark simulation.
 
-Chronology matters here. The honest agent is not robbed immediately upon becoming honest. He is protected on the first night because he stays home, and occupied houses in the benchmark cannot be burgled. Only later, once the society leaves the universal-cycle environment and moves into the stochastic proportional transfer extension, do occupied but unguarded houses become imperfectly safe. The distinction between first night certainty and later stochastic vulnerability is maintained in both the theory and the simulation.
+Chronology matters. The honest agent is not robbed immediately upon becoming honest because occupied houses are perfectly safe in the unit transfer benchmark. Only later, after the paper moves to the proportional environment with delegated predation and guarding, do occupied but unguarded houses become imperfectly safe. The deterministic first-night result and the later stochastic vulnerability therefore belong to different layers of the model and should not be conflated.
 
 \subsection{Proportional-transfer extension and endogenous patronage}
 
-Once the first honest shock has broken symmetry, the benchmark no longer suffices. The dynamic extension retains the same population and wealth state, but the theft technology changes. A successful raid on victim $j$ now transfers $\gamma w_{jt}$, with $\gamma \in (0,1)$. This is the only theft technology used in the stratification, patronage, and guard regimes. Under unequal wealth, the relevant margin is no longer the gain or loss of one unit. A rich agent who leaves home exposes a large stock of wealth, while a poor agent exposes very little. The proportional specification expresses that asymmetry parsimoniously.
+Once the first honest shock has broken symmetry, the benchmark no longer suffices. The dynamic extension retains the same population, the same public wealth state, and the same logic of explicit target choice, but the theft technology changes. A successful raid on victim $j$ now transfers $\gamma w_{jt}$, with $\gamma \in (0,1)$. If several raiders converge on the same unprotected household, total extractable loot is still rival and concurrent raiders divide that amount rather than each taking it independently. This is the only theft technology used in the stratification, patronage, and guard regimes. Under unequal wealth, the relevant margin is no longer the gain or loss of one unit. A rich agent who leaves home exposes a large stock of wealth, while a poor agent exposes very little. The proportional specification expresses that asymmetry parsimoniously.
 
 Let $m_t$ denote the expected gross loot from the best personal raid available to a rich agent at date $t$. For most of the analysis it is enough to treat
 \begin{equation}
