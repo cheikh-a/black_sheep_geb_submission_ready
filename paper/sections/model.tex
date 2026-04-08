@@ -124,52 +124,85 @@ The theorem is deliberately local. It does not solve the full repeated game with
 
 Chronology matters. The honest agent is not robbed immediately upon becoming honest because occupied houses are perfectly safe in the unit transfer benchmark. Only later, after the paper moves to the proportional environment with delegated predation and guarding, do occupied but unguarded houses become imperfectly safe. The deterministic first-night result and the later stochastic vulnerability therefore belong to different layers of the model and should not be conflated.
 
-\subsection{Proportional-transfer extension and endogenous patronage}
+\subsection{Proportional transfer extension and endogenous patronage}
 
-Once the first honest shock has broken symmetry, the benchmark no longer suffices. The dynamic extension retains the same population, the same public wealth state, and the same logic of explicit target choice, but the theft technology changes. A successful raid on victim $j$ now transfers $\gamma w_{jt}$, with $\gamma \in (0,1)$. If several raiders converge on the same unprotected household, total extractable loot is still rival and concurrent raiders divide that amount rather than each taking it independently. This is the only theft technology used in the stratification, patronage, and guard regimes. Under unequal wealth, the relevant margin is no longer the gain or loss of one unit. A rich agent who leaves home exposes a large stock of wealth, while a poor agent exposes very little. The proportional specification expresses that asymmetry parsimoniously.
+After the first honest disturbance, wealth differences matter directly for choice because leaving home now exposes different stocks of wealth. The extension therefore keeps the same population, the same public wealth state, and the same logic of explicit target choice, while replacing the unit transfer rule with proportional appropriation. If household $j$ is successfully raided in period $t$, gross loot equals $\Gamma_{jt} = \gamma_j w_{jt}$, where $\gamma_j = \gamma \in (0,1)$ for nonelite households and $\gamma_j = \gamma_E \in (0,1)$ for elite households once the guarding margin becomes relevant. Rivalry in extraction remains explicit. For any household $j$, let $A_{jt}$ denote the set of active attackers who target $j$ in period $t$ and let $a_{jt} = |A_{jt}|$. Let $\omega_{jt}=1$ if household $j$ is occupied because its owner stays home, hires a thief, or hires a guard, and let $\omega_{jt}=0$ if the owner leaves home to raid personally or works away from home as a thief. Let $g_{jt}=1$ if household $j$ is guarded and zero otherwise. Conditional on being targeted, the probability that loot is successfully extracted from $j$ is
+\begin{equation}
+\kappa_{jt}
+=
+\mathbf{1}\{\omega_{jt}=0\}
++
+\chi_t \mathbf{1}\{\omega_{jt}=1,\; g_{jt}=0\}
++
+(1-q_t)\chi_t \mathbf{1}\{\omega_{jt}=1,\; g_{jt}=1\},
+\label{eq:success-probability}
+\end{equation}
+where $\chi_t \in (0,1]$ is the vulnerability of an occupied but unguarded household and $q_t \in [0,1]$ is guard effectiveness. Expected gross loot taken from $j$ is therefore $\kappa_{jt}\Gamma_{jt}$, and if $a_{jt}\ge 1$ each attacker receives expected share $\kappa_{jt}\Gamma_{jt}/a_{jt}$. Congestion in the extension is thus handled in the same way as in the benchmark: several attackers can converge on one victim, but they divide one rival object.
 
-Let $m_t$ denote the expected gross loot from the best personal raid available to a rich agent at date $t$. For most of the analysis it is enough to treat
+Within each period, wealth $w_t$ is publicly observed before any sufficiently wealthy household chooses one occupation from
+\[
+A^{R}_t
+=
+\{\text{stay},\text{self raid},\text{offer theft contract},\text{offer guard job}\},
+\]
+while any poor household that receives offers chooses at most one action from
+\[
+A^{P}_t
+=
+\{\text{accept theft employment}, \text{accept guard employment}, \text{freelance raid}, \text{stay}\}.
+\]
+Every active thief next chooses a target, either directly if he is freelance or from the target class specified by the patron if he is employed, after which success, loot division, wages, remittances, and punishment are realized and wealth is updated. The patronage and guarding results below refer to this extension stage game and to stationary Markov behavior in its repeated version.
+
+Two target classes keep the direction of predation clear. Let $T_t$ denote the set of vulnerable nonelite households available to a wealthy self raider, and let $H_t \subseteq T_t$ denote the richer and weakly protected part of that set that a patron can reach more effectively by directing a dependent thief. In the patronage regime the physical act of theft is therefore still aimed mainly at poor or near-poor households. The vertical transfer appears because contracted thieves remit part of the loot upward to the patron.
+
+For a wealthy household that raids personally, let $m_t$ denote the expected gross return from the best target in $T_t$ under the success and congestion rule just stated. For the pairwise comparisons below it is enough to write
 \begin{equation}
 m_t = \gamma \bar{w}^{T}_t,
 \label{eq:mt}
 \end{equation}
-where $\bar{w}^{T}_t$ is the expected wealth of the best available target class among nonelite households. If rich agent $i$ raids personally, his expected one-period net payoff is
+where $\bar{w}^{T}_t$ is the mean wealth of the best available target class among nonelite households after accounting for the fact that concurrent raiders dilute one another's shares. If rich agent $i$ raids personally, the expected one period payoff is
 \begin{equation}
-\pi^{\mathrm{self}}_{it} = m_t - \rho w_{it} - c_T.
+\pi^{\mathrm{self}}_{it} = m_t - \rho w_{it} - c_T,
 \label{eq:personal-payoff}
 \end{equation}
-If instead he stays home without contracting, the normalized payoff is $\pi^{\mathrm{stay}}_{it}=0$.
+where $\rho w_{it}$ is the expected value of leaving wealth exposed at home and $c_T$ is direct theft cost. Staying home without contracting yields the normalized payoff $\pi^{\mathrm{stay}}_{it}=0$.
 
-Patronage becomes meaningful only if delegation changes the feasible target set and the division of surplus. To capture the first margin, let $H_t \subseteq P_t$ denote the set of relatively wealthy but still poorly protected households among the poor. A patron can direct a hired thief toward this set more effectively than a freelancer can. Let $\phi_t \ge 1$ denote that targeting advantage, so delegated gross loot is
+Delegation alters both the target set and the division of returns. A theft contract offered by patron $i$ to poor worker $j$ specifies a fixed payment $s_{ijt}$, a thief loot share $\alpha_{ijt}\in[0,1]$, and access to the target class $H_t$. Let $\phi_t\ge 1$ summarize the patron's targeting advantage inside that class. Expected gross delegated loot is then
 \begin{equation}
 L_t = \phi_t \gamma \bar{w}^{H}_t,
 \label{eq:delegated-loot}
 \end{equation}
-where $\bar{w}^{H}_t$ is the mean wealth of the targeted high value poor. The model thus keeps the direction of physical theft clear. In the patronage regime, poor thieves usually rob poor or near-poor households, not elite households. The net transfer is poor to rich because some of the loot is remitted upward to the patron.
-
-To capture the second margin, let $o_{jt}$ denote the outside option of poor agent $j$ if he rejects an offer from a patron. The outside option is not the full delegated loot because a freelancer lacks the targeting advantage of the patron and competes with other poor thieves for a depleted prey base. The model writes
+where $\bar{w}^{H}_t$ is mean wealth in $H_t$. If the worker rejects the offer, he can freelance on the remaining vulnerable poor. Let $o_{jt}$ denote that outside option:
 \begin{equation}
 o_{jt} = \lambda_t \gamma \bar{w}^{P}_t - c_T,
 \qquad \lambda_t \in (0,1),
 \label{eq:outside-option}
 \end{equation}
-where $\bar{w}^{P}_t$ is mean poor wealth and $\lambda_t$ summarizes congestion and bargaining weakness in the freelance market. A contract between patron $i$ and thief $j$ has fixed payment $s_{ijt}$ and loot share $\alpha_{ijt} \in [0,1]$ for the thief, while the patron pays contracting cost $k>0$. The thief accepts if
+where $\bar{w}^{P}_t$ is mean poor wealth and $\lambda_t$ summarizes the weaker targets and heavier congestion faced by freelancers. Worker $j$ accepts the patron's offer if
 \begin{equation}
 s_{ijt} + \alpha_{ijt}L_t \ge o_{jt}.
 \label{eq:IR}
 \end{equation}
 
-Let $\beta \in [0,1]$ denote patron bargaining power over the residual surplus. If a contract is formed, total surplus net of the outside option of the thief and the contracting cost of the patron equals
+Once a contract is accepted, one contracted theft relation is formed in that period. The patron pays contracting cost $k>0$, the worker raids within $H_t$, the patron remains occupied at home, and realized loot is divided according to the contract. Writing expected net joint surplus as
 \begin{equation}
-\Sigma_t = L_t - k - o_{jt}.
+\Sigma_t = L_t - k - o_{jt},
 \label{eq:total-surplus}
 \end{equation}
-The payment rule is chosen so that the thief receives his outside option plus the share $(1-\beta)\Sigma_t$, leaving the patron with $\beta \Sigma_t$. Equivalently,
+and letting $\beta \in [0,1]$ denote patron bargaining power, the contract allocates
 \begin{equation}
 s_{ijt} + \alpha_{ijt}L_t = o_{jt} + (1-\beta)\Sigma_t
 \label{eq:bargaining-rule}
 \end{equation}
-whenever $\Sigma_t \ge 0$.
+to the thief, leaving the patron with $\beta\Sigma_t$. The induced expected wealth update for the patron-worker pair is
+\begin{equation}
+\begin{aligned}
+w_{i,t+1} &= w_{it} - \ell_{it} + (1-\alpha_{ijt})L_t - s_{ijt} - k,\\
+w_{j,t+1} &= w_{jt} - \ell_{jt} + s_{ijt} + \alpha_{ijt}L_t - c_T,
+\end{aligned}
+\label{eq:contract-update}
+\end{equation}
+where $\ell_{it}$ and $\ell_{jt}$ denote realized incoming losses under the success and congestion rule in \eqref{eq:success-probability}. Rich agents who raid personally, poor freelancers, and guards are governed by the same accounting: period wealth equals initial wealth minus incoming loss plus role-specific income minus the resource cost attached to that role.
 
 \begin{lemma}[Contract feasibility]
 \label{lem:contract-feasibility}
@@ -184,7 +217,7 @@ L_t - o_{jt} > k.
 See Appendix \ref{app:proofs}. A contract is feasible exactly when gross delegated loot exceeds the reservation utility of the thief plus the contracting cost of the patron.
 \end{proof}
 
-Condition \eqref{eq:feasibility} is economically transparent. Patronage is not attractive merely because the patron is rich. It is attractive because delegated predation reaches a target class or success probability that the poor freelancer cannot reach alone, and because the outside option of poor workers is compressed by competition and depletion. If either margin disappears, the contract market collapses.
+Condition \eqref{eq:feasibility} identifies the wedge that supports delegated predation. A patron gains nothing from hiring merely because wealth is high. Hiring becomes viable when access to $H_t$ raises expected gross loot above what a freelancer can secure elsewhere and when congestion keeps the worker's outside option below that delegated return. Without that wedge, the contract market has no surplus to divide.
 
 \begin{proposition}[Strict patron surplus and occupational choice]
 \label{prop:patronage}
@@ -204,9 +237,7 @@ The rich agent strictly prefers hiring thief $j$ to both abstention and personal
 See Appendix \ref{app:proofs}. Equation \eqref{eq:patron-payoff} follows directly from the bargaining rule. Hiring dominates abstention because the right-hand side of \eqref{eq:patron-dominance} exceeds zero, and it dominates personal theft because the expected surplus from delegation exceeds the net return available to the rich agent who exposes wealth at home.
 \end{proof}
 
-Surplus arises because delegation is more productive than freelance theft and because the reservation utility of the worker remains below delegated gross returns. The wedge can come from better targeting, better information, bargaining power, or labour-market slack. The model requires only one such margin to survive.
-
-Poor agents become hired thieves because they remain below the wealth threshold at which exposure makes personal theft unattractive and because the wage or commission implied by \eqref{eq:bargaining-rule} exceeds their shrinking outside option. The same compression of opportunity that makes them vulnerable to theft also makes them available as predatory labor. That dual role is central to the later emergence of guards.
+Surplus arises because delegation improves access to targets and because the worker's reservation payoff remains below delegated gross returns. Better information, denser local knowledge, asymmetric bargaining power, or labor-market slack can each sustain that wedge. The poor workers who accept these offers remain poor enough that leaving home exposes little wealth, while the compensation implied by \eqref{eq:bargaining-rule} still exceeds what freelance raiding would bring. The same pool of labor later becomes available for guarding.
 
 \begin{corollary}[Comparative statics of patronage]
 \label{cor:patronage-statics}
@@ -217,25 +248,23 @@ Fix $w_{it}$ and suppose $L_t = \phi_t \gamma \bar{w}^{H}_t$ and $o_{jt} = \lamb
 See Appendix \ref{app:proofs}. The derivative of \eqref{eq:patron-payoff} with respect to $\phi_t$ is positive, the derivatives with respect to $\lambda_t$ and $k$ are negative, and the comparison against personal theft depends on whether these changes also widen the gap in \eqref{eq:patron-dominance}.
 \end{proof}
 
-These are exactly the margins varied later in the simulation figures. Patronage expands when delegated targeting becomes more effective, contracts when the outside option of poor workers strengthens, and weakens when contracting becomes expensive. The comparative statics in the code therefore match the comparative statics in the model.
+Accordingly, patronage expands when delegated targeting becomes more effective, contracts when the outside option of poor workers strengthens, and weakens when contracting becomes expensive.
 
 \subsection{The switch from patronage to guarding}
 
-If patronage succeeds for long enough, it changes the environment that made it profitable in the first place. Poor wealth is depleted, so $L_t$ declines over time as the supply of lucrative unguarded targets shrinks. At the same time, elite wealth rises, making concentrated fortunes worth defending. To capture the latter margin, let $\chi_t \in (0,1)$ denote the residual probability that elite wealth is targeted successfully when it is merely occupied but not formally guarded. This residual risk is low during active patronage because the patron remains at home and because dependent thieves have a reason not to antagonize the patrons who pay them. It need not remain low forever. Once patronage thins the poor prey base and contractual relations unravel, poaching against elites or opportunistic raids by former dependents become more attractive. Occupancy alone no longer replicates the discipline previously created by an active patronage network.
+Guarding is another action inside the same extension stage game. A household that hires a thief remains occupied but unguarded, so its own vulnerability is governed by the middle term in \eqref{eq:success-probability}. A household that hires a guard remains occupied and guarded, so the success probability of an incoming elite raid falls to $(1-q_t)\chi_t$. This distinction is what later separates patronage from protection: occupancy by itself no longer makes concentrated wealth safe once predation and retaliation have become selective.
 
-If elite agent $i$ hires a guard at wage $g$, and guarding blocks a raid with probability $q_t$, the expected value of protection is the avoided expected loss on concentrated wealth:
-\begin{equation}
-\pi^{\mathrm{guard}}_{it} = q_t \chi_t \gamma_E w_{it} - g,
-\label{eq:guard-payoff}
-\end{equation}
-where $\gamma_E \in (0,1)$ is the fraction of elite wealth at stake in a successful elite raid. Poor workers accept guard employment provided the wage weakly exceeds their best alternative, which in the model means
+Let elite household $i$ offer a guard job at wage $g$ to poor worker $j$. The worker accepts when the wage weakly exceeds both the freelance option and any noncriminal fallback:
 \begin{equation}
 g \ge \max\{o_{jt}, \underline{u}_{jt}\},
 \label{eq:guard-IR}
 \end{equation}
-where $\underline{u}_{jt}$ is a noncriminal fallback option. The simulation imposes this acceptance condition directly when guards are hired from the poorest available agents.
-
-The rich agent compares \eqref{eq:guard-payoff} with \eqref{eq:patron-payoff}. Guarding dominates patronage whenever the expected value of avoided elite loss exceeds the surplus from one more round of delegated predation:
+where $\underline{u}_{jt}$ is the best noncriminal outside option. Once accepted, the worker remains at the elite house and does not raid in that period. The employer then receives the expected benefit of avoided elite loss:
+\begin{equation}
+\pi^{\mathrm{guard}}_{it} = q_t \chi_t \gamma_E w_{it} - g,
+\label{eq:guard-payoff}
+\end{equation}
+where $\gamma_E w_{it}$ is the elite stock that would be exposed in a successful raid. Relative to one more patron-thief contract, guarding is optimal whenever the avoided expected elite loss exceeds the surplus from continued delegated predation:
 \begin{equation}
 q_t \chi_t \gamma_E w_{it} - g \ge \beta\left(L_t - k - o_{jt}\right).
 \label{eq:guard-dominance}
@@ -255,7 +284,7 @@ Moreover, $\widehat{w}^{G}_t$ falls as the prey base among the poor is depleted,
 See Appendix \ref{app:proofs}. Rearranging \eqref{eq:guard-dominance} yields the threshold. Depletion reduces the right-hand side of \eqref{eq:guard-dominance}, lowering the elite wealth level at which guarding becomes privately optimal.
 \end{proof}
 
-Several timing and role ambiguities also disappear under this threshold comparison. Rich households need not hire guards at the outset because elite wealth is not yet concentrated enough and active patronage already creates informal deterrence. Guards emerge later even though rich households were occupied earlier because occupancy no longer suffices once concentrated wealth becomes a tempting target and patronage ceases to discipline the population that once supplied predatory labor. The direction of predation also remains clear: during patronage, poor thieves are usually robbing poor households for rich principals, and once guarding dominates the same pool of poor agents may be reallocated from predation to protection.
+Guard hiring does not appear immediately because elite wealth is not yet large enough and because patronage already keeps the employer at home while preserving some informal deterrence against attacks on patrons. Guards appear later because wealth concentration raises the loss at stake and because the surplus from one more delegated raid shrinks as poor targets are depleted. The direction of predation remains the same across that transition. During patronage, poor thieves are usually robbing poor households for wealthy principals. Once guarding dominates, part of that same labor pool is reassigned from predation to protection.
 
 \begin{corollary}[Comparative statics of guarding]
 \label{cor:guard-statics}
@@ -266,7 +295,7 @@ The guarding threshold $\widehat{w}^{G}_t$ in \eqref{eq:guard-threshold} is decr
 See Appendix \ref{app:proofs}. The claims follow from direct differentiation of \eqref{eq:guard-threshold} with respect to the relevant parameters.
 \end{proof}
 
-Stronger guarding technology or greater elite exposure expands the region in which protection is privately optimal. Stronger patronage surplus or more expensive guard labor contracts that region. The move to policing is therefore an endogenous choice over technologies of control.
+Stronger guarding technology or greater elite exposure expands the region in which protection is privately optimal, while stronger patronage surplus or more expensive guard labor contracts that region. Policing emerges from the same strategic environment as patronage.
 
 \subsection{Welfare}
 

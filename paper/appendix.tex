@@ -212,16 +212,16 @@ The fourth assumption concerns guarding. In the model, guarding becomes attracti
 
 \subsection{Simulation implementation details}
 
-This subsection records the simulation algorithm in enough detail that a reader can map every figure in the paper to a precise computational step. The code itself is the authoritative implementation, but the written algorithm helps align the appendix with the manuscript's notation.
+The algorithm below maps the formal objects into the computational steps that generate the figures and tables. The code remains the authoritative implementation, but the written version keeps the appendix in the same notation as the model and simulation sections.
 
 \begin{enumerate}[leftmargin=1.5em]
     \item Initialize $N$ agents with common wealth $\bar{w}$, assign the balanced theft permutation $\sigma$, and designate the initial honest set. In the baseline path the honest set contains one permanent honest agent.
     \item Run the deterministic benchmark perturbation. On the first night the honest agent stays home, all other agents follow the original cycle, and wealth is updated according to the accounting in Lemma \ref{lem:first-night}.
     \item In later benchmark periods, let each nonhonest agent compare current wealth to the threshold $\widehat{w}$ in \eqref{eq:threshold}. Agents above the threshold stay home; agents below it continue the cycle.
     \item For the proportional transfer simulations, reinitialize from the common wealth state and apply the first honest perturbation, then classify rich and elite agents each period using the threshold multipliers $\theta_R$ and $\theta_E$.
-    \item Compute candidate personal theft returns for rich agents using \eqref{eq:personal-payoff}. Compute candidate contract surplus using \eqref{eq:total-surplus} and accept only contracts satisfying \eqref{eq:feasibility}. Order patrons from richest to poorest and match them to the poorest available workers.
+    \item Compute candidate personal theft returns for rich agents using \eqref{eq:personal-payoff}. Compute candidate contract surplus using \eqref{eq:total-surplus} and accept only contracts satisfying \eqref{eq:feasibility}. Order patrons from richest to poorest and match them to the poorest available workers, which is the code-level implementation of the offer stage in the extension game.
     \item Assign hired thieves to the high value poor target set $H_t$, freelancers to vulnerable households ranked by expected loot, and guards to elite households satisfying \eqref{eq:guard-threshold}. Apply the guard acceptance condition \eqref{eq:guard-IR}.
-    \item Realize raids sequentially. Each realized transfer is based on the victim's remaining wealth at the moment of attack, so multiple attacks on the same house have diminishing returns within a period.
+    \item Realize raids sequentially as the code-level counterpart to the rival-loot rule in \eqref{eq:success-probability}. Each realized transfer is based on the victim's remaining wealth at the moment of attack, so collisions on one house generate diminishing returns within a period.
     \item Apply wages, loot shares, contracting costs, guard wages, and punishment losses. Update the wealth vector and the role vector.
     \item Compute inequality statistics, welfare components, first entry times into patronage and guarding, and the regime label for the period. Store these outputs before advancing to the next date.
     \item Repeat until the simulation horizon is reached. Store processed data, figures, and tables through the reproducible build pipeline documented in the replication materials.
