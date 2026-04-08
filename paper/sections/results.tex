@@ -3,7 +3,7 @@
 
 \subsection{The first honest night}
 
-Balanced reciprocity breaks through an exact local redistribution on the first honest night, and Figures \ref{fig:fig01_balanced_cycle_event} and \ref{fig:fig02_first_night_accounting} keep that accounting visible because every later inequality result depends on it. Event time in Figure \ref{fig:fig01_balanced_cycle_event} follows the honest household, its predecessor, its successor, and the rest of the population. The path is the one derived in Lemma \ref{lem:first-night}: the honest household remains protected on the first night because it stays home, the predecessor who targets that occupied house loses because he returns empty handed and is still robbed by his own predecessor, and the successor keeps the proceeds of his own raid while escaping the loss that would otherwise have come from the honest household. The first rupture is therefore not diffuse. It is a precise redistribution within a three-household neighborhood of the original cycle.
+Balanced reciprocity breaks through an exact local redistribution on the first honest night, and Figures \ref{fig:fig01_balanced_cycle_event} and \ref{fig:fig02_first_night_accounting} keep that accounting visible because every later inequality result depends on it. Event time in Figure \ref{fig:fig01_balanced_cycle_event} follows the honest household, its predecessor, its successor, and the rest of the population. The path is the one derived in Lemma \ref{lem:first-night}: the honest household remains protected on the first night because it stays home, the predecessor who targets that occupied house loses because he returns empty handed and is still robbed by his own predecessor, and the successor keeps the proceeds of his own raid while escaping the loss that would otherwise have come from the honest household. The rupture is a precise redistribution within a three-household neighborhood of the original cycle rather than a diffuse disturbance spread across the whole population.
 
 \begin{figure}[tbp]
     \centering
@@ -12,7 +12,7 @@ Balanced reciprocity breaks through an exact local redistribution on the first h
     \label{fig:fig01_balanced_cycle_event}
 \end{figure}
 
-The state change used by Theorem \ref{thm:no-stationary-one-honest} is compressed in Figure \ref{fig:fig02_first_night_accounting}. The honest household is protected on the first night, the successor moves to $\bar{w}+\tau$, and the predecessor takes the initial loss. The theorem then compares that successor wealth to the cutoff in \eqref{eq:threshold}. Because the benchmark chronology is deterministic, the departure from the original cycle cannot be attributed to stochastic targeting or noisy matching. The simulation at this stage is simply implementing the same occupancy rule, the same first-night accounting, and the same cutoff comparison used in the theorem.
+Figure \ref{fig:fig02_first_night_accounting} compresses the state change used by Theorem \ref{thm:no-stationary-one-honest}. The honest household is protected on the first night, the successor moves to $\bar{w}+\tau$, and the predecessor takes the initial loss. The theorem then compares that successor wealth to the cutoff in \eqref{eq:threshold}. Because the benchmark chronology is deterministic, the departure from the original cycle cannot be attributed to stochastic targeting or noisy matching. At this stage the simulation is only implementing the same occupancy rule, the same first-night accounting, and the same cutoff comparison used in the theorem.
 
 \begin{figure}[tbp]
     \centering
@@ -34,7 +34,7 @@ The local state change created by Lemma \ref{lem:first-night} turns into a persi
     \label{fig:fig03_event_time_roles}
 \end{figure}
 
-The same process appears in cross section in Figure \ref{fig:fig04_distribution_evolution}, where the heatmap and quantile ribbons show a distribution that rapidly loses its middle. Early support remains narrow because the honest perturbation is still local. A few periods later the upper tail thickens while the lower quantiles bend downward as repeated raids and weak outside options trap a growing mass of agents in the poor set. The widening is asymmetric for reasons already built into the theory. The upper tail is carried by agents whose wealth makes personal exposure costly and who later capture contractual surplus through \eqref{eq:patron-payoff}; the lower tail is carried by agents whose outside options remain close to \eqref{eq:outside-option} and whose wealth leaves them exposed to repeated predation.
+Cross-sectional widening appears in Figure \ref{fig:fig04_distribution_evolution}, where the heatmap and quantile ribbons show a distribution that rapidly loses its middle. Early support remains narrow because the honest perturbation is still local. A few periods later the upper tail thickens while the lower quantiles bend downward as repeated raids and weak outside options trap a growing mass of agents in the poor set. The widening is asymmetric for reasons already built into the theory. The upper tail is carried by agents whose wealth makes personal exposure costly and who later capture contractual surplus through \eqref{eq:patron-payoff}; the lower tail is carried by agents whose outside options remain close to \eqref{eq:outside-option} and whose wealth leaves them exposed to repeated predation.
 
 \begin{figure}[tbp]
     \centering
@@ -43,7 +43,7 @@ The same process appears in cross section in Figure \ref{fig:fig04_distribution_
     \label{fig:fig04_distribution_evolution}
 \end{figure}
 
-Conventional inequality measures in Figure \ref{fig:fig05_inequality_dynamics} move in the same direction. The Gini coefficient rises sharply from its benchmark value near zero, the top decile wealth share increases in tandem, and Lorenz curves at selected dates move steadily away from the forty-five-degree line. These statistics do not introduce a different mechanism. They show that the threshold logic of the model generates a large and persistent distributional divergence in the baseline calibration, rather than a handful of isolated pathwise winners and losers.
+Conventional inequality measures in Figure \ref{fig:fig05_inequality_dynamics} move in the same direction. The Gini coefficient rises sharply from its benchmark value near zero, the top decile wealth share increases in tandem, and Lorenz curves at selected dates move steadily away from the forty-five-degree line. These statistics add no separate mechanism; they show that the threshold logic of the model generates a large and persistent distributional divergence in the baseline calibration, rather than a handful of isolated pathwise winners and losers.
 
 \begin{figure}[tbp]
     \centering
@@ -52,7 +52,7 @@ Conventional inequality measures in Figure \ref{fig:fig05_inequality_dynamics} m
     \label{fig:fig05_inequality_dynamics}
 \end{figure}
 
-Taken together, Figures \ref{fig:fig03_event_time_roles} through \ref{fig:fig05_inequality_dynamics} trace one mechanism at three levels. The deterministic shock creates a local state difference, the cutoff in \eqref{eq:threshold} turns that difference into differentiated behavior, and the proportional environment amplifies the split because wealthy households stop exposing their own stocks while poor households remain available for predatory labor.
+Event-time paths, cross-sectional distributions, and summary inequality measures all trace the same mechanism. The deterministic shock creates a local state difference, the cutoff in \eqref{eq:threshold} turns that difference into differentiated behavior, and the proportional environment amplifies the split because wealthy households stop exposing their own stocks while poor households remain available for predatory labor.
 
 \subsection{Patronage and the surplus from delegation}
 
@@ -71,7 +71,7 @@ Patronage need not be monotone in every parameter that raises expected loot. Whe
 
 \subsection{From patronage to guarding}
 
-The dominant medium-run regime over the parameter plane spanned by theft intensity and enforcement effectiveness appears in Figure \ref{fig:fig07_regime_phase_diagram}. Low theft intensity combined with weak enforcement tends to preserve a long transition because the returns to both predation and protection remain limited. As theft intensity rises and enforcement becomes more effective, the dominant regime shifts toward coexistence and guarding. Collapse appears where predation is intense enough and protection weak enough that the social base is depleted before a stable protected elite can consolidate. Equation \eqref{eq:guard-threshold} organizes that map: higher enforcement effectiveness lowers the private threshold for protection, while higher theft intensity both raises the stakes of exposure and accelerates depletion.
+Across the parameter plane spanned by theft intensity and enforcement effectiveness, the dominant medium-run regime takes the shape shown in Figure \ref{fig:fig07_regime_phase_diagram}. Low theft intensity combined with weak enforcement tends to preserve a long transition because the returns to both predation and protection remain limited. As theft intensity rises and enforcement becomes more effective, the dominant regime shifts toward coexistence and guarding. Collapse appears where predation is intense enough and protection weak enough that the social base is depleted before a stable protected elite can consolidate. Equation \eqref{eq:guard-threshold} organizes that map: higher enforcement effectiveness lowers the private threshold for protection, while higher theft intensity both raises the stakes of exposure and accelerates depletion.
 
 \begin{figure}[tbp]
     \centering
@@ -82,7 +82,7 @@ The dominant medium-run regime over the parameter plane spanned by theft intensi
 
 On this parameter plane, patronage appears mainly as a transitional corridor and only infrequently as the dominant medium-run regime. The diagram is therefore populated mostly by transition, coexistence, guard, and collapse regions, even though patronage remains visible in the event-time paths, network snapshots, and contracting comparative statics. Delegation organizes the middle of the transition without necessarily becoming the dominant late institutional form once \eqref{eq:guard-threshold} is crossed or depletion becomes severe.
 
-Role shares over time in Figure \ref{fig:fig08_role_shares} restore calendar time to the same regime logic. The share of agents engaged in direct or freelance theft falls after the first perturbation, patrons and hired thieves rise next, and guards appear later and remain active through much of the enforcement phase even though their share is not monotone over time. Each movement corresponds to a formal object already in the theory. The early decline in universal theft reflects Theorem \ref{thm:no-stationary-one-honest}, the rise in patrons and hired thieves reflects Proposition \ref{prop:patronage}, and the later appearance of guarding reflects Theorem \ref{thm:guarding}.
+Calendar time returns in Figure \ref{fig:fig08_role_shares}. The share of agents engaged in direct or freelance theft falls after the first perturbation, patrons and hired thieves rise next, and guards appear later and remain active through much of the enforcement phase even though their share is not monotone over time. Each movement corresponds to a formal object already in the theory. The early decline in universal theft reflects Theorem \ref{thm:no-stationary-one-honest}, the rise in patrons and hired thieves reflects Proposition \ref{prop:patronage}, and the later appearance of guarding reflects Theorem \ref{thm:guarding}.
 
 \begin{figure}[tbp]
     \centering
@@ -91,7 +91,7 @@ Role shares over time in Figure \ref{fig:fig08_role_shares} restore calendar tim
     \label{fig:fig08_role_shares}
 \end{figure}
 
-The transition timing in Figure \ref{fig:fig09_transition_timing} separates what is pinned down by chronology from what is left open by later state evolution. Under the simulation timing, the first opportunity to hire arrives immediately after the deterministic honest shock, and every run generates at least one patron at that first post-shock contracting round, so a raw first-entry statistic for patronage carries little information. The left panel therefore measures the scale of the patronage complex at time $3$, after the first hiring cascade has unfolded, while the right panel records the date at which guards reach five percent of the population. Patronage is immediate under this timing rule; movement into guarding is later and depends on the delayed crossing of \eqref{eq:guard-threshold}.
+Transition timing in Figure \ref{fig:fig09_transition_timing} separates what is pinned down by chronology from what is left open by later state evolution. Under the simulation timing, the first opportunity to hire arrives immediately after the deterministic honest shock, and every run generates at least one patron at that first post-shock contracting round, so a raw first-entry statistic for patronage carries little information. The left panel therefore measures the scale of the patronage complex at time $3$, after the first hiring cascade has unfolded, while the right panel records the date at which guards reach five percent of the population. Patronage is immediate under this timing rule; movement into guarding is later and depends on the delayed crossing of \eqref{eq:guard-threshold}.
 
 \begin{figure}[tbp]
     \centering
@@ -102,7 +102,7 @@ The transition timing in Figure \ref{fig:fig09_transition_timing} separates what
 
 Coexistence reveals institutional layering instead of a synchronized regime switch. In those paths, some elites have crossed the guard threshold while others still rely on patronage, so different technologies of control operate simultaneously in different parts of the wealth distribution. The move from patronage to guarding is unequal and sequential because \eqref{eq:guard-threshold} is wealth-dependent.
 
-The numerical summary in Table \ref{tab:simulation-summary} compresses the same sequence across the baseline perturbation, patronage, and enforcement simulations. The baseline perturbation is the least unequal of the three simulated environments. Patronage produces a larger rise in concentration because it adds a contract technology that channels loot upward, and enforcement then preserves and slightly intensifies that concentration. The table is the numerical counterpart to the welfare logic in Proposition \ref{prop:welfare}: distributional divergence begins when reciprocity breaks, and later regimes magnify or lock in that divergence through contracting and protection.
+Table \ref{tab:simulation-summary} compresses the same sequence across the baseline perturbation, patronage, and enforcement simulations. The baseline perturbation is the least unequal of the three simulated environments. Patronage produces a larger rise in concentration because it adds a contract technology that channels loot upward, and enforcement then preserves and slightly intensifies that concentration. The table is the numerical counterpart to the welfare logic in Proposition \ref{prop:welfare}: distributional divergence begins when reciprocity breaks, and later regimes magnify or lock in that divergence through contracting and protection.
 
 \begin{table}[tbp]
     \centering
@@ -113,7 +113,7 @@ The numerical summary in Table \ref{tab:simulation-summary} compresses the same 
 
 \subsection{Network reorganization and welfare}
 
-The organizational change becomes visible in network form in Figure \ref{fig:fig10_network_snapshots}. On the first honest night the graph is still dominated by direct theft edges arranged around the original cycle. In the middle snapshot, contract links connect patrons to hired thieves and theft edges point from those thieves toward vulnerable poor households. In the later snapshot, guard links radiate from elite households while direct theft edges thin out. Proposition \ref{prop:patronage} and Theorem \ref{thm:guarding} imply that reorganization: direct predation gives way first to vertical contracting and later to selective protection.
+Network form makes the organizational change easiest to see in Figure \ref{fig:fig10_network_snapshots}. On the first honest night the graph is still dominated by direct theft edges arranged around the original cycle. In the middle snapshot, contract links connect patrons to hired thieves and theft edges point from those thieves toward vulnerable poor households. In the later snapshot, guard links radiate from elite households while direct theft edges thin out. Proposition \ref{prop:patronage} and Theorem \ref{thm:guarding} imply that reorganization: direct predation gives way first to vertical contracting and later to selective protection.
 
 \begin{figure}[tbp]
     \centering
@@ -122,7 +122,7 @@ The organizational change becomes visible in network form in Figure \ref{fig:fig
     \label{fig:fig10_network_snapshots}
 \end{figure}
 
-The welfare consequences of the transition appear in Figure \ref{fig:fig11_welfare_decomposition}. Gross wealth and utilitarian welfare do not move together. Aggregate wealth declines because theft, punishment, and protection burn resources even when much of the interaction is redistributive in form. Welfare deteriorates more sharply because redistribution toward the top lowers the concave utility sum and because predation, contracting, punishment, and guarding all consume resources. Proposition \ref{prop:welfare} formalizes that mechanism, and the figure decomposes it along one baseline path.
+Welfare consequences appear in Figure \ref{fig:fig11_welfare_decomposition}. Gross wealth and utilitarian welfare do not move together. Aggregate wealth declines because theft, punishment, and protection burn resources even when much of the interaction is redistributive in form. Welfare deteriorates more sharply because redistribution toward the top lowers the concave utility sum and because predation, contracting, punishment, and guarding all consume resources. Proposition \ref{prop:welfare} formalizes that mechanism, and the figure decomposes it along one baseline path.
 
 \begin{figure}[tbp]
     \centering
@@ -131,11 +131,11 @@ The welfare consequences of the transition appear in Figure \ref{fig:fig11_welfa
     \label{fig:fig11_welfare_decomposition}
 \end{figure}
 
-Because Figure \ref{fig:fig11_welfare_decomposition} follows one baseline enforcement path rather than a comparison across parameter regions, its most direct contribution lies in the composition of resource use over time. Theft costs dominate early, contracting costs spike during patronage, and guarding costs remain persistent later on. Guard adoption changes the composition of resource loss without restoring the earlier welfare level.
+Because the decomposition follows one baseline enforcement path rather than a comparison across parameter regions, its most direct contribution lies in the composition of resource use over time. Theft costs dominate early, contracting costs spike during patronage, and guarding costs remain persistent later on. Guard adoption changes the composition of resource loss without restoring the earlier welfare level.
 
 \subsection{Robustness}
 
-The one-dimensional robustness exercises collected in Figure \ref{fig:fig12_robustness_panels} are most informative about the strength of the mechanism rather than about regime geometry. Final welfare responds most strongly to theft intensity and occupied-house vulnerability in this sweep, while final inequality moves within a narrower band. Regime classification also changes little once the system is already in the region where guarding is attractive. Among the four margins shown, only the theft-intensity sweep changes the dominant regime, passing from transition to guard and then to coexistence as extraction becomes harsher.
+One-dimensional robustness exercises in Figure \ref{fig:fig12_robustness_panels} are most informative about the strength of the mechanism rather than about regime geometry. Final welfare responds most strongly to theft intensity and occupied-house vulnerability in this sweep, while final inequality moves within a narrower band. Regime classification also changes little once the system is already in the region where guarding is attractive. Among the four margins shown, only the theft-intensity sweep changes the dominant regime, passing from transition to guard and then to coexistence as extraction becomes harsher.
 
 \begin{figure}[tbp]
     \centering
@@ -144,6 +144,6 @@ The one-dimensional robustness exercises collected in Figure \ref{fig:fig12_robu
     \label{fig:fig12_robustness_panels}
 \end{figure}
 
-The failure cases identify the conditions under which the mechanism attenuates. High contracting costs and weak targeting advantage compress the surplus in \eqref{eq:total-surplus}, while low occupied-house vulnerability reduces the value of crossing the guarding threshold. The sweeps therefore locate the margins that mute the transition without suggesting that every one-dimensional variation redraws the institutional map.
+Failure cases identify the conditions under which the mechanism attenuates. High contracting costs and weak targeting advantage compress the surplus in \eqref{eq:total-surplus}, while low occupied-house vulnerability reduces the value of crossing the guarding threshold. The sweeps therefore locate the margins that mute the transition without suggesting that every one-dimensional variation redraws the institutional map.
 
-Collapse is easier to read in Figure \ref{fig:fig07_regime_phase_diagram}. The collapse cells do not mark a numerical artifact or a moral inversion of balanced reciprocity. They identify paths in which predation and protection together destroy the social base that made them profitable. Poor households become too depleted to sustain patronage, and inequality becomes so sharp that a small protected core cannot reorganize the rest into a stable order. This possibility prevents the model from telling a falsely deterministic story in which every corrupt equilibrium matures smoothly into guarded hierarchy.
+Collapse is easiest to read in Figure \ref{fig:fig07_regime_phase_diagram}. The collapse cells do not mark a numerical artifact or a moral inversion of balanced reciprocity. They identify paths in which predation and protection together destroy the social base that made them profitable. Poor households become too depleted to sustain patronage, and inequality becomes so sharp that a small protected core cannot reorganize the rest into a stable order. This possibility prevents the model from telling a falsely deterministic story in which every corrupt equilibrium matures smoothly into guarded hierarchy.
